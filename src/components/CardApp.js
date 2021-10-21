@@ -1,14 +1,15 @@
+import React, { Component }  from 'react';
 import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-
+const { Meta } = Card;
 const CardApp = () => (
-    <div className={'MyHeader'}>
+    <div className={'MyCard'}>
         <Card
             style={{ width: 300 }}
             cover={
                 <img
                     alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiGstEfoWAOHiTxclqi.png"
+                    src="https://i.ibb.co/845rwyF/output-onlinepngtools-4.png"
                 />
             }
             actions={[
