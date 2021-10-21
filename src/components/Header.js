@@ -7,7 +7,7 @@ import {Button} from 'antd';
 const App = () => (
     <div className={'MyHeader'}>
         <Header style={{background: 'rgb(230, 234, 255)', padding: '0px 0px'}}>
-            <Row gutter={15}>
+            <Row>
                 <Col className="gutter-row" offset={0.6}  span={1.1}>
                     <Image.PreviewGroup>
                         <Image width={65} preview={false} style={{padding: '5px 5px'}}
@@ -19,8 +19,8 @@ const App = () => (
                     <h1 className={'GiveIt'}>GiveIt</h1>
                 </Col>
 
-                <Col offset={10} span={6}>
-                    <Button type="primary" shape="circle">
+                <Col offset={10} span={2}>
+                    <Button  type="primary" shape="circle">
                         <MessageOutlined/>
                     </Button>
                 </Col>

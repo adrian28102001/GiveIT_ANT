@@ -8,7 +8,7 @@ const CardApp = () => (
             cover={
                 <img
                     alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/JiGstEfoWAOHiTxclqi.png"
                 />
             }
             actions={[
