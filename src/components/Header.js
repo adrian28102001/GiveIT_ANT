@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState}from "react";
 import {Header} from "antd/es/layout/layout";
 import {Row, Col, Image, Badge, Button, Affix} from "antd";
 import {MessageOutlined, UserOutlined } from "@ant-design/icons";
@@ -6,34 +6,50 @@ import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
 
 
-const HeaderApp = () => (
+const HeaderApp = () => {
 
-    <div className={'MyHeader'}>
-        <Header style={{ background: 'rgb(230, 234, 255)', padding: '0px 0px', height:'60px'}}>
-            <Row >
-                <Col >
-                    <Image.PreviewGroup>
+    return (
 
-                        <Image width={65} preview={false} style={{padding: '5px 5px'}}
-                               src="https://i.ibb.co/845rwyF/output-onlinepngtools-4.png"/>
-                    </Image.PreviewGroup>
-                </Col>
+            <div className={'MyHeader'}>
+                <Affix offsetTop={0}>
+                <Header style={{ width: '100%', background: 'rgb(230, 234, 255)', padding: '0px 0px', height: '60px'
+                }}>
 
-                <Col>
-                    <h1 className={'GiveIt'}>GiveIt</h1>
-                </Col>
-                <Col  offset={18}>
-                    <Badge size="small" count={5}>
-                    <Button size="large" type="default" shape="circle">
-                        <MessageOutlined/>
+                    <Row>
+                        <Col offset={1}>
+                            <Image.PreviewGroup>
 
-                    </Button>
-                    </Badge>
-                </Col>
+                                <Image width={65} preview={false} style={{padding: '5px 5px'}}
+                                       src="https://i.ibb.co/845rwyF/output-onlinepngtools-4.png"/>
+                            </Image.PreviewGroup>
+                        </Col>
 
-            </Row>
-        </Header>
-    </div>
-);
+                        <Col>
+                            <h1 className={'GiveIt'}>GiveIt</h1>
+                        </Col>
 
+                        <Col offset={2}>
+                            <Link exact to={'/'}>
+                                <h3>Home</h3>
+                            </Link>
+                        </Col>
+
+                        <Col offset={15}>
+                            <Badge size="small" count={5}>
+                                <Link exact to="/chat"><Button size="large" type="default" shape="circle">
+                                    <MessageOutlined/>
+                                </Button></Link>
+                            </Badge>
+                        </Col>
+
+                        <Col>
+                            <CascadUser/>
+                        </Col>
+                    </Row>
+                </Header>
+                </Affix>
+            </div>
+
+    );
+}
 export default HeaderApp;
