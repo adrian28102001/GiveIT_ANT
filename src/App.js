@@ -1,61 +1,29 @@
 import React from 'react';
 import './App.less';
-import SiderApp from "./components/Sider";
-import {Row, Col, Layout} from "antd";
-import Header from "./components/Header";
-import CardApp from "./components/CardApp";
+import HeaderApp from "./components/Header";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
+import chat from "./pages/Chat";
+import Home from "./pages/Home";
+import {Layout} from "antd";
 
+const App = () => {
+    return (
+        <Router>
 
-
-const App = () => (
-    <>
-        <Layout>
-            <SiderApp/>
             <Layout>
-                <Header/>
-
-                <Row align={'center'}>
-                    <Col>
-                        <CardApp/>
-                    </Col>
-
-                    <Col>
-                        <CardApp/>
-                    </Col>
-                    <Col>
-                        <CardApp/>
-                    </Col>
-                </Row>
-
-                <Row align={'center'}>
-                    <Col>
-                        <CardApp/>
-                    </Col>
-
-                    <Col>
-                        <CardApp/>
-                    </Col>
-                    <Col>
-                        <CardApp/>
-                    </Col>
-                </Row>
-
-                <Row align={'center'}>
-                    <Col>
-                        <CardApp/>
-                    </Col>
-
-                    <Col>
-                        <CardApp/>
-                    </Col>
-                    <Col>
-                        <CardApp/>
-                    </Col>
-                </Row>
-
+                <HeaderApp/>
+                <Switch>
+                    <Route path="/chat" exact component={chat}/>
+                    <Route path="/" exact component={Home}/>
+                </Switch>
             </Layout>
-        </Layout>
-    </>
-);
+
+        </Router>
+    );
+}
 
 export default App;
