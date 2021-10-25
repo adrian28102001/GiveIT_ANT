@@ -1,7 +1,7 @@
-import React, {useState}from "react";
+import React, {useState} from "react";
 import {Header} from "antd/es/layout/layout";
 import {Row, Col, Image, Badge, Button, Affix} from "antd";
-import {MessageOutlined, UserOutlined } from "@ant-design/icons";
+import {MessageOutlined, UserOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
 
@@ -10,9 +10,10 @@ const HeaderApp = () => {
 
     return (
 
-            <div className={'MyHeader'}>
-                <Affix offsetTop={0}>
-                <Header style={{ width: '100%', background: 'rgb(230, 234, 255)', padding: '0px 0px', height: '60px'
+        <div className={'MyHeader'}>
+            <Affix offsetTop={0}>
+                <Header style={{
+                    width: '100%', background: 'rgb(230, 234, 255)', padding: '0px 0px', height: '60px'
                 }}>
 
                     <Row>
@@ -47,8 +48,8 @@ const HeaderApp = () => {
                         </Col>
                     </Row>
                 </Header>
-                </Affix>
-            </div>
+            </Affix>
+        </div>
 
     );
 }

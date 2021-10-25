@@ -1,9 +1,8 @@
 import React from 'react';
 import SiderApp from "../components/Sider";
-import HeaderApp from "../components/Header";
 import CardApp from "../components/CardApp";
-import {Row, Col, Layout, Affix} from "antd";
-import CascadeApp from "../components/CascadUser";
+import {Row, Col, Layout} from "antd";
+
 
 
 const Home = () => {
