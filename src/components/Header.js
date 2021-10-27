@@ -4,6 +4,7 @@ import {Row, Col, Image, Badge, Button, Affix} from "antd";
 import {MessageOutlined, UserOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
+import DrawerForm from "../pages/NewAcc";
 
 
 const HeaderApp = () => {
@@ -35,7 +36,7 @@ const HeaderApp = () => {
                             </Link>
                         </Col>
 
-                        <Col offset={15}>
+                        <Col offset={14}>
                             <Badge size="small" count={5}>
                                 <Link exact to="/chat"><Button size="large" type="default" shape="circle">
                                     <MessageOutlined/>
@@ -45,6 +46,9 @@ const HeaderApp = () => {
 
                         <Col>
                             <CascadUser/>
+                        </Col>
+                        <Col style={{'margin-left':'7px'}}>
+                            <DrawerForm/>
                         </Col>
                     </Row>
                 </Header>

@@ -20,10 +20,7 @@ const App = () => {
                 <Switch>
                     <Route path="/chat" exact component={chat}/>
                     <Route path="/" exact component={Home}/>
-                </Switch>
-                <Switch>
                     <Route path="/add_announcement" exact component={Add_announcement}/>
-                    <Route path="/" exact component={Home}/>
                 </Switch>
             </Layout>
 
