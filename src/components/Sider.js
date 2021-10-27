@@ -1,21 +1,31 @@
 import React from "react";
-import {Layout, Menu} from 'antd';
+import {Button, Layout, Menu} from 'antd';
 import {UserOutlined, LaptopOutlined, NotificationOutlined} from '@ant-design/icons';
+import {Link} from "react-router-dom";
 
 const {SubMenu} = Menu;
 const {Sider} = Layout;
 
 const SiderApp = () => {
     return (
-        <div className={'Sider'}>
-            <Sider className="site-layout-background" width={200}>
+        <div className={'Sider'}  >
+            <Sider className="site-layout-background" width={200} >
+
                 <Menu
                     mode="inline"
                     style={{
-                        position: 'fixed',
+                        'overflow-y': 'auto',
                         height: '100vh',
-                        width: '200px'
+                        position: 'fixed',
+                        left:0,
+                        width: '250px',
+
                     }}>
+                    <div style={{padding:'40px 60px'}}>
+                    <Link exact to="/add_announcement"><Button type="primary" ghost>
+                        Creaza un anunt
+                    </Button></Link>
+                    </div>
                     <SubMenu key="sub1" icon={<UserOutlined/>} title="Mobila">
                         <Menu.Item key="1">Scaun</Menu.Item>
                         <Menu.Item key="2">Dulap</Menu.Item>
