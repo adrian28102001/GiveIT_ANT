@@ -2,6 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import {Drawer, Form, Button, Col, Row, Input, Select, Space,Checkbox} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
+import {Link} from "react-router-dom";
 const {Option} = Select;
 
 
@@ -74,7 +75,7 @@ class DrawerForm extends React.Component {
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 Log in
                             </Button>
-                            Or <a href="">register now!</a>
+                            Or <Link exact to={"/register"}><a href="">register now!</a></Link>
                         </Form.Item>
                     </Form>
                 </Drawer>
