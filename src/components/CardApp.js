@@ -11,8 +11,9 @@ const CardApp = () => (
             cover={
                 <img
                     alt="example"
-                    src="https://i.ibb.co/845rwyF/output-onlinepngtools-4.png"
+                    src="https://i.ibb.co/rpKt95x/photo-2021-10-08-17-00-37.jpg"
                 />
+
             }
             actions={[
                 <SettingOutlined key="setting" />,
