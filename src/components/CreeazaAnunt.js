@@ -9,7 +9,6 @@ import {
 
 } from 'antd';
 import {UploadOutlined} from "@ant-design/icons";
-import TextArea from "./TextArea";
 
 const normFile = (e: any) => {
     console.log('Upload event:', e);

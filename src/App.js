@@ -12,6 +12,7 @@ import {Layout} from "antd";
 import Add_announcement from "./pages/Add_announcement";
 import RegistrationForm from "./pages/RegistrationForm";
 import MyProfile from "./pages/MyProfile";
+import TabsCard from "./pages/MyProfile";
 
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
                     <Route path="/" exact component={Home}/>
                     <Route path="/add_announcement" exact component={Add_announcement}/>
                     <Route path="/register" exact component={RegistrationForm}/>
-                    <Route path="/MyProfile" exact component={MyProfile}/>
+                    <Route path="/MyProfile" exact component={TabsCard}/>
                 </Switch>
             </Layout>
 
