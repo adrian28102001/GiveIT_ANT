@@ -11,8 +11,6 @@ const Home = () => {
             <Layout>
                 <SiderApp/>
                 <Layout>
-
-
                     <Row align={'center'}>
                         <Col>
                             <CardApp/>
