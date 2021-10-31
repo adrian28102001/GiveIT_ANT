@@ -27,6 +27,11 @@ const FormCreatingAdd = () => {
 
     return (
         <>
+            <h1 style={{'font-size':28,
+                'margin-left':'40px',
+                'padding':'30px'
+            }}>
+                Creaza un anut</h1>
             <Form
                 labelCol={{
                     span: 4,
@@ -88,6 +93,12 @@ const FormCreatingAdd = () => {
 
                 <Form.Item label="Termeni&Conditii" valuePropName="checked">
                     <Switch />
+                </Form.Item>
+
+                <Form.Item label=" " colon={false}>
+                    <Button type="primary" htmlType="submit">
+                        Submit
+                    </Button>
                 </Form.Item>
 
             </Form>

@@ -10,7 +10,6 @@ import DrawerForm from "../pages/LogIn";
 const HeaderApp = () => {
 
     return (
-
         <div className={'MyHeader'}>
             <Affix offsetTop={0}>
                 <Header style={{

@@ -41,7 +41,7 @@ class TabsCard extends React.Component {
         return (
             <>
                     <Card
-                        style={{width: '100%'}}
+                        style={{width: '90%', 'margin-left':'50px'}}
                         tabList={tabList}
                         activeTabKey={this.state.key}
                         onTabChange={key => {

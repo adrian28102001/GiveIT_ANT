@@ -10,9 +10,11 @@ import chat from "./pages/Chat";
 import Home from "./pages/Home";
 import {Layout} from "antd";
 import Add_announcement from "./pages/Add_announcement";
-import RegistrationForm from "./pages/RegistrationForm";
+import RegistrationForm from "./components/RegistrationForm";
 import MyProfile from "./pages/MyProfile";
 import TabsCard from "./pages/MyProfile";
+import SiderApp from "./components/Sider";
+import Register from "./pages/RegisterPage";
 
 
 const App = () => {
@@ -20,13 +22,16 @@ const App = () => {
         <Router>
             <Layout>
                 <HeaderApp/>
+                <Layout>
+                    <SiderApp/>
                 <Switch>
                     <Route path="/chat" exact component={chat}/>
                     <Route path="/" exact component={Home}/>
                     <Route path="/add_announcement" exact component={Add_announcement}/>
-                    <Route path="/register" exact component={RegistrationForm}/>
+                    <Route path="/register" exact component={Register}/>
                     <Route path="/MyProfile" exact component={TabsCard}/>
                 </Switch>
+                </Layout>
             </Layout>
 
         </Router>

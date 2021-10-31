@@ -15,7 +15,8 @@ const SiderApp = () => {
                     mode="inline"
                     style={{
                         'overflow-y': 'auto',
-                        height: '100vh',
+                        'overflow-x': 'hidden',
+                        height: '92vh',
                         position: 'fixed',
                         left:0,
                         width: '250px',

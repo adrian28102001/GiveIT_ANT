@@ -8,8 +8,7 @@ import {Row, Col, Layout} from "antd";
 const Home = () => {
     return (
         <>
-            <Layout>
-                <SiderApp/>
+
                 <Layout>
                     <Row align={'center'}>
                         <Col>
@@ -51,7 +50,6 @@ const Home = () => {
                     </Row>
 
                 </Layout>
-            </Layout>
 
         </>
     );

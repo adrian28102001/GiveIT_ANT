@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import {
     Form,
     Input,
-    Cascader,
     Select,
     Checkbox,
-    Button,
+    Button
 } from 'antd';
 
 import { DatePicker, Space } from 'antd';
@@ -15,58 +14,33 @@ function onChange(date, dateString) {
 }
 
 const { Option } = Select;
-const residences = [
-    {
-        value: 'Chisinau',
-        label: 'Chisinau',
-    },
-    {
-        value: 'Cahul',
-        label: 'Cahul',
-    },
-];
+
 
 
 const RegistrationForm = () => {
-    const [form] = Form.useForm();
-
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-    };
-
-    const prefixSelector = (
-        <Form.Item name="prefix" noStyle >
-            <Select
-                style={{
-                    width: 80,
-                }}
-            >
-                <option>+373</option>
-            </Select>
-        </Form.Item>
-    );
 
     return (
-        <Form
-            form={form}
-            name="register"
-            onFinish={onFinish}
-            initialValues={{
-                prefix: '+373',
-            }}
-            scrollToFirstError
-        >
+        <>
+            <Form
+                labelCol={{
+                    span: 4,
+                }}
+                wrapperCol={{
+                    span: 14,
+                }}
+            >
+
             <Form.Item
                 name="email"
                 label="E-mail"
                 rules={[
                     {
                         type: 'email',
-                        message: 'The input is not valid E-mail!',
+                        message: 'Email-ul este invalid!',
                     },
                     {
                         required: true,
-                        message: 'Please input your E-mail!',
+                        message: 'Introduceți Email-ul!',
                     },
                 ]}
             >
@@ -74,11 +48,11 @@ const RegistrationForm = () => {
             </Form.Item>
 
             <Form.Item name="age"
-                        label="Birthday"
+                        label="Data Nasterii"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your Birthday!',
+                                message: 'Introduceți data nașterii!',
                             },
                         ]}>
                 <Space direction="vertical">
@@ -88,12 +62,12 @@ const RegistrationForm = () => {
 
             <Form.Item
                 name="password"
-                label="Password"
+                label="Parola"
                 rules={[
                     {
                         required: true,
                         min:5,
-                        message: 'Please input your password!',
+                        message: 'Introducreți parola!',
                     },
                 ]}
                 hasFeedback
@@ -103,14 +77,13 @@ const RegistrationForm = () => {
 
             <Form.Item
                 name="confirm"
-                label="Confirm Password"
+                label="Confirmă parola"
                 dependencies={['password']}
                 hasFeedback
                 rules={[
                     {
                         required: true,
-                        min:5,
-                        message: 'Please confirm your password!',
+                        message: 'Confirmați parola!',
                     },
                     ({ getFieldValue }) => ({
                         validator(_, value) {
@@ -118,7 +91,7 @@ const RegistrationForm = () => {
                                 return Promise.resolve();
                             }
 
-                            return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                            return Promise.reject(new Error('Parola nu coincide!'));
                         },
                     }),
                 ]}
@@ -129,11 +102,10 @@ const RegistrationForm = () => {
             <Form.Item
                 name="nickname"
                 label="Nickname"
-                tooltip="What do you want others to call you?"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your nickname!',
+                        message: 'Introduceți nickname-ul!',
                         whitespace: true,
                     },
                 ]}
@@ -143,50 +115,49 @@ const RegistrationForm = () => {
 
             <Form.Item
                 name="residence"
-                label="Habitual Residence"
+                label="Orasul"
                 rules={[
                     {
-                        type: 'array',
                         required: true,
-                        message: 'Please select your habitual residence!',
+                        message: 'Introduceți orașul',
                     },
                 ]}
             >
-                <Cascader options={residences} />
+                <Input/>
             </Form.Item>
 
             <Form.Item
                 name="phone"
-                label="Phone Number"
+                label="Nr de telefon"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your phone number!',
+                        min:8,
+                        max:8,
+                        message: 'Introduceți numarul de telefon!',
                     },
                 ]}
             >
-                <Input
-                    addonBefore={prefixSelector}
-                    style={{
-                        width: '100%',
-                    }}
+
+                <Input type={'number'}
+                    prefix="+373"
                 />
             </Form.Item>
 
             <Form.Item
                 name="gender"
-                label="Gender"
+                label="Genul"
                 rules={[
                     {
                         required: true,
-                        message: 'Please select gender!',
+                        message: 'Selectați genul!',
                     },
                 ]}
             >
-                <Select placeholder="select your gender">
-                    <Option value="male">Male</Option>
-                    <Option value="female">Female</Option>
-                    <Option value="other">Other</Option>
+                <Select placeholder="selecteaza genul">
+                    <Option value="masculin">Masculin</Option>
+                    <Option value="feminin">Feminin</Option>
+                    <Option value="altele">Altele</Option>
                 </Select>
             </Form.Item>
 
@@ -202,7 +173,7 @@ const RegistrationForm = () => {
 
             >
                 <Checkbox>
-                    I have read the <a href="">agreement</a>
+                   Sunt de acord cu <a href="">termenii și condițiile</a>
                 </Checkbox>
             </Form.Item>
             <Form.Item >
@@ -211,6 +182,7 @@ const RegistrationForm = () => {
                 </Button>
             </Form.Item>
         </Form>
+        </>
     );
 };
 
