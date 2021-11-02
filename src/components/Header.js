@@ -44,7 +44,7 @@ const HeaderApp = () => {
                         </Col>
 
                         <Col>
-                            <CascadUser/>
+                            <Link exact to ="/MyProfile"><CascadUser/></Link>
                         </Col>
                         <Col style={{'margin-left':'7px'}}>
                             <DrawerForm/>

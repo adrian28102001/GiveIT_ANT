@@ -1,7 +1,7 @@
 
 import React from "react";
 import Layout from "antd/es/layout/layout";
-import CardApp from "./CardApp";
+import CardApp from "../CardApp";
 
 
 const Favorites = () => {
