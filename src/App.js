@@ -10,9 +10,7 @@ import chat from "./pages/Chat";
 import Home from "./pages/Home";
 import {Layout} from "antd";
 import Add_announcement from "./pages/Add_announcement";
-import RegistrationForm from "./components/RegistrationForm";
 import MyProfile from "./components/MyProfile/MyProfile";
-import TabsCard from "./components/MyProfile/MyProfile";
 import SiderApp from "./components/Sider";
 import Register from "./pages/RegisterPage";
 

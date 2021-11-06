@@ -19,7 +19,7 @@ public class UserController {
     //Inject rep by spring container
     @Autowired
     private UserRepository userRepository;
-
+    private User user = new User();
     //get all users on the screen
     @GetMapping("/users")
     public List<User> getAllUsers(){
@@ -47,12 +47,15 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails){
         User user = userRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("User with id:" + id + " doesn't exist."));
+        user.setUserName(userDetails.getUserName());
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
-        user.setBirthday(userDetails.getBirthday());
-        user.setGender(userDetails.getGender());
         user.setEmail(userDetails.getEmail());
         user.setPassword(userDetails.getPassword());
+        user.setPhone(userDetails.getPhone());
+        user.setProvince(userDetails.getProvince());
+        user.setBirthday(userDetails.getBirthday());
+        user.setGender(userDetails.getGender());
 
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
