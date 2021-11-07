@@ -19,7 +19,6 @@ const HeaderApp = () => {
                     <Row>
                         <Col offset={1}>
                             <Image.PreviewGroup>
-
                                 <Image width={65} preview={false} style={{padding: '5px 5px'}}
                                        src="https://i.ibb.co/845rwyF/output-onlinepngtools-4.png"/>
                             </Image.PreviewGroup>
@@ -46,7 +45,7 @@ const HeaderApp = () => {
                         <Col>
                             <Link exact to ="/MyProfile"><CascadUser/></Link>
                         </Col>
-                        <Col style={{'margin-left':'7px'}}>
+                        <Col style={{marginleft:'7px'}}>
                             <DrawerForm/>
                         </Col>
                     </Row>

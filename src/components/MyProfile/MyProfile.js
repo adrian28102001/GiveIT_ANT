@@ -1,6 +1,6 @@
 import MyProfileMenu from "../MyProfile/MyProfileMenu";
 import React from "react";
-import {Layout, Row} from "antd";
+import {Layout} from "antd";
 import AboutClient from "./AboutClient";
 
 

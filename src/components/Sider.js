@@ -14,8 +14,7 @@ const SiderApp = () => {
                 <Menu
                     mode="inline"
                     style={{
-                        'overflow-y': 'auto',
-                        'overflow-x': 'hidden',
+
                         height: '92vh',
                         position: 'fixed',
                         left:0,
