@@ -1,5 +1,4 @@
 import React from 'react';
-import SiderApp from "../components/Sider";
 import CardApp from "../components/CardApp";
 import {Row, Col, Layout} from "antd";
 

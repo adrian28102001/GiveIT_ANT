@@ -1,9 +1,10 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import {Drawer, Form, Button, Col, Row, Input, Select, Space,Checkbox} from 'antd';
+import {Drawer, Form, Button, Input, Select, Checkbox} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
-const {Option} = Select;
+// eslint-disable-next-line no-empty-pattern
+const {} = Select;
 
 
 class DrawerForm extends React.Component {
@@ -66,6 +67,7 @@ class DrawerForm extends React.Component {
                                 <Checkbox>Remember me</Checkbox>
                             </Form.Item>
 
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <a className="login-form-forgot" href="">
                                 Forgot password
                             </a>
@@ -75,6 +77,7 @@ class DrawerForm extends React.Component {
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 Log in
                             </Button>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             Or <Link exact to={"/register"}><a href="">register now!</a></Link>
                         </Form.Item>
                     </Form>

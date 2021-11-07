@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import {Header} from "antd/es/layout/layout";
 import {Row, Col, Image, Badge, Button, Affix} from "antd";
-import {MessageOutlined, UserOutlined} from "@ant-design/icons";
+import {MessageOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
 import DrawerForm from "../pages/LogIn";

@@ -1,5 +1,5 @@
 import React from "react";
-import {Menu, Dropdown, Button, Anchor} from 'antd';
+import {Menu, Dropdown, Button} from 'antd';
 import {UserOutlined} from "@ant-design/icons";
 
 const CascadUser = () => {

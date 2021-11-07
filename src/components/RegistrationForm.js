@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import UserService from "../service/UserService";
 import {DatePicker, Space} from 'antd';
 import {
@@ -293,6 +293,7 @@ class RegistrationForm extends Component {
 
                     >
                         <Checkbox>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             Sunt de acord cu <a href="">termenii și condițiile</a>
                         </Checkbox>
                     </Form.Item>
