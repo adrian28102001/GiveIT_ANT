@@ -1,7 +1,8 @@
 package com.example.springboot.model;
+
 import lombok.Data;
+
 import javax.persistence.*;
-import java.time.LocalDate;
 
 //JPA annotations to map model to relational database table
 @Entity
@@ -35,7 +36,7 @@ public @Data class User {
     private String province;
 
     @Column(name = "birthday")
-    private LocalDate birthday;
+    private String birthday;
 
     @Column(name = "gender")
     private String gender;

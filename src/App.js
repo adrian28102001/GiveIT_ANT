@@ -23,11 +23,11 @@ const App = () => {
                 <Layout>
                     <SiderApp/>
                 <Switch>
-                    <Route path="/chat" exact component={chat}/>
+                    <Route path="/chat"  component={chat}/>
                     <Route path="/" exact component={Home}/>
-                    <Route path="/add_announcement" exact component={Add_announcement}/>
-                    <Route path="/register" exact component={Register}/>
-                    <Route path="/MyProfile" exact component={MyProfile}/>
+                    <Route path="/add_announcement"  component={Add_announcement}/>
+                    <Route path="/register"  component={Register}/>
+                    <Route path="/MyProfile"  component={MyProfile}/>
                 </Switch>
                 </Layout>
             </Layout>

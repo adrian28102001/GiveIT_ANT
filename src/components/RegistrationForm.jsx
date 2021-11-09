@@ -45,7 +45,6 @@ class RegistrationForm extends Component {
         this.changeGenderHandler = this.changeGenderHandler.bind(this);
 
         this.saveUser = this.saveUser.bind(this);
-
     }
 
     saveUser = (event) => {
@@ -64,14 +63,13 @@ class RegistrationForm extends Component {
         };
         console.log('user => ' + JSON.stringify(user));
 
-        UserService.createUser(user).then(res => {
-            this.props.history.push('/users');
+        UserService.createUser(user).then( response => {
+            this.setState({
+                post: response.data
+            });
         });
     }
 
-    cancel() {
-        this.props.history.push('/users');
-    }
 
     //Assign the new values to user
     changeUserNameHandler = (event) => {
@@ -208,7 +206,8 @@ class RegistrationForm extends Component {
                             },
                         ]}
                     >
-                        <Input/>
+                        <Input placeholder="UserName" name="userName" className="form-control"
+                               value={this.state.userName} onChange={this.changeUserNameHandler}/>
                     </Form.Item>
 
                     <Form.Item
@@ -274,10 +273,11 @@ class RegistrationForm extends Component {
                             },
                         ]}
                     >
-                        <Select placeholder="selecteaza genul" onClick={this.changeGenderHandler}>
-                            <Option value="sexul puternimc">Masculin</Option>
+                        <Select placeholder="selecteaza genul" >
+                            <Option value="sexul puternimc">Masculin< /Option>
                             <Option value="sexul frumos">Feminin</Option>
                             <Option value="ambele">Altele</Option>
+                            onClick={this.changeGenderHandler}
                         </Select>
                     </Form.Item>
 

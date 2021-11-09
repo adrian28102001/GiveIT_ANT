@@ -9,8 +9,9 @@ CREATE TABLE users
     password varchar(265) not null,
     phone varchar(8),
     province varchar(40),
-    birthday date,
+    birthday varchar(12),
     gender varchar(10)
 )WITH (
      OIDS=FALSE
 );
+
