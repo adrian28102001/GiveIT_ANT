@@ -22,12 +22,4 @@ public @Data class PostModel {
     @Column(name = "description")
     private String description;
 
-    public PostModel() {}
-
-    public PostModel(String title, String category, String description) {
-        super();
-        this.title = title;
-        this.category = category;
-        this.description = description;
-    }
 }
