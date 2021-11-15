@@ -3,6 +3,8 @@ package com.example.springboot.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //JPA annotations to map model to relational database table
 @Entity
@@ -35,10 +37,9 @@ public @Data class User {
     @Column(name = "province")
     private String province;
 
-    @Column(name = "birthday")
-    private String birthday;
 
-    @Column(name = "gender")
-    private String gender;
-//Getters Setters and constructors are created automatically by lombok library
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid", referencedColumnName = "id")
+    private List<PostModel> postModelList = new ArrayList<>();
+    //Getters Setters and constructors are created automatically by lombok library
 }

@@ -54,8 +54,6 @@ public class UserController {
         user.setPassword(userDetails.getPassword());
         user.setPhone(userDetails.getPhone());
         user.setProvince(userDetails.getProvince());
-        user.setBirthday(userDetails.getBirthday());
-        user.setGender(userDetails.getGender());
 
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
