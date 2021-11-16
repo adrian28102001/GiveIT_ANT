@@ -16,9 +16,6 @@ public @Data class User {
 
     private long id;
 
-    @Column(name = "username")
-    private String userName;
-
     @Column(name = "firstname")
     private String firstName;
 

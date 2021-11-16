@@ -47,7 +47,6 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails){
         User user = userRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("User with id:" + id + " doesn't exist."));
-        user.setUserName(userDetails.getUserName());
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setEmail(userDetails.getEmail());
