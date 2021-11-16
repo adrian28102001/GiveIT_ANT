@@ -18,21 +18,15 @@ const HeaderApp = () => {
 
                     <Row>
                         <Col offset={1}>
-                            <Image.PreviewGroup>
+                            <Link exact to={'/'}><Image.PreviewGroup>
                                 <Image width={65} preview={false} style={{padding: '5px 5px'}}
                                        src="https://i.ibb.co/845rwyF/output-onlinepngtools-4.png"/>
-                            </Image.PreviewGroup>
+                            </Image.PreviewGroup></Link>
                         </Col>
-
                         <Col>
-                            <h1 className={'GiveIt'}>GiveIt</h1>
+                            <Link exact to={'/'}><h1 className={'GiveIt'}>GiveIt</h1></Link>
                         </Col>
 
-                        <Col offset={2}>
-                            <Link exact to={'/'}>
-                                <h3>Home</h3>
-                            </Link>
-                        </Col>
 
                         <Col offset={14}>
                             <Badge size="small" count={5}>
