@@ -34,15 +34,13 @@ class RegistrationForm extends Component {
             birthday: '',
             gender: ''
         }
-        this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
         this.changePhoneHandler = this.changePhoneHandler.bind(this);
         this.changeProvinceHandler = this.changeProvinceHandler.bind(this);
-        this.changeBirthdayHandler = this.changeBirthdayHandler.bind(this);
-        this.changeGenderHandler = this.changeGenderHandler.bind(this);
+
 
         this.saveUser = this.saveUser.bind(this);
     }
@@ -51,15 +49,13 @@ class RegistrationForm extends Component {
         event.preventDefault();
 
         let user = {
-            userName: this.state.userName,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
             password: this.state.password,
             phone: this.state.phone,
             province: this.state.province,
-            birthday: this.state.birthday,
-            gender: this.state.gender
+
         };
         console.log('user => ' + JSON.stringify(user));
 
@@ -72,9 +68,6 @@ class RegistrationForm extends Component {
 
 
     //Assign the new values to user
-    changeUserNameHandler = (event) => {
-        this.setState({userName: event.target.value});
-    }
 
     changeFirstNameHandler = (event) => {
         this.setState({firstName: event.target.value});
@@ -98,15 +91,6 @@ class RegistrationForm extends Component {
 
     changeProvinceHandler = (event) => {
         this.setState({province: event.target.value});
-    }
-
-    changeBirthdayHandler = (event) => {
-        onChange();
-        this.setState({birthday: event.target.value});
-    }
-
-    changeGenderHandler = (event) => {
-        this.setState({gender: event.target.value});
     }
 
 
@@ -140,18 +124,72 @@ class RegistrationForm extends Component {
                                value={this.state.email} onChange={this.changeEmailHandler}/>
                     </Form.Item>
 
-                    <Form.Item name="age"
-                               label="Data Nasterii"
-                               rules={[
-                                   {
-                                       required: true,
-                                       message: 'Introduceți data nașterii!',
-                                   },
-                               ]}>
-                        <Space direction="vertical">
-                            <DatePicker placeholder="Birthdate" name="birthday" className="form-control"
-                                        value={this.state.birthday} onChange={this.onChange}/>
-                        </Space>
+
+                    <Form.Item
+                        name="lastname"
+                        label="Nume"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Introduceți numele!',
+                                whitespace: true,
+                            },
+                        ]}
+                    >
+                        <Input placeholder="Last Name" name="lastName" className="form-control"
+                               value={this.state.lastName} onChange={this.changeLastNameHandler}/>
+                    </Form.Item>
+
+
+                    <Form.Item
+                        name="firstname"
+                        label="Prenume"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Introduceți prenumele!',
+                                whitespace: true,
+                            },
+                        ]}
+                    >
+                        <Input placeholder="First Name" name="firstName" className="form-control"
+                               value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
+                    </Form.Item>
+
+                    <Form.Item
+                        name="orasul"
+                        label="orasul"
+                        rules={[
+                            {
+                                message: 'Introduceți prenumele!',
+                                whitespace: true,
+                            },
+                        ]}
+                    >
+                        <Input placeholder="orasul" name="orasul" className="form-control"
+                               value={this.state.firstName} onChange={this. changeProvinceHandler}/>
+                    </Form.Item>
+
+
+
+                    <Form.Item
+                        name="phone"
+                        label="Nr de telefon"
+                        rules={[
+                            {
+                                required: true,
+                                min: 8,
+                                max: 8,
+                                message: 'Introduceți numarul de telefon!',
+                            },
+                        ]}
+                    >
+
+                        <Input type={'number'}
+                               prefix="+373"
+                               placeholder="Phone" name="phone" className="form-control"
+                               value={this.state.phone} onChange={this.changePhoneHandler}
+                        />
                     </Form.Item>
 
                     <Form.Item
@@ -195,91 +233,6 @@ class RegistrationForm extends Component {
                                         value={this.state.password} onChange={this.changePasswordHandler}/>
                     </Form.Item>
 
-                    <Form.Item
-                        name="nickname"
-                        label="Nickname"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Introduceți nickname-ul!',
-                                whitespace: true,
-                            },
-                        ]}
-                    >
-                        <Input placeholder="UserName" name="userName" className="form-control"
-                               value={this.state.userName} onChange={this.changeUserNameHandler}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name="lastname"
-                        label="Nume"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Introduceți numele!',
-                                whitespace: true,
-                            },
-                        ]}
-                    >
-                        <Input placeholder="Last Name" name="lastName" className="form-control"
-                               value={this.state.lastName} onChange={this.changeLastNameHandler}/>
-                    </Form.Item>
-
-
-                    <Form.Item
-                        name="firstname"
-                        label="Prenume"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Introduceți prenumele!',
-                                whitespace: true,
-                            },
-                        ]}
-                    >
-                        <Input placeholder="First Name" name="firstName" className="form-control"
-                               value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
-                    </Form.Item>
-
-
-
-                    <Form.Item
-                        name="phone"
-                        label="Nr de telefon"
-                        rules={[
-                            {
-                                required: true,
-                                min: 8,
-                                max: 8,
-                                message: 'Introduceți numarul de telefon!',
-                            },
-                        ]}
-                    >
-
-                        <Input type={'number'}
-                               prefix="+373"
-                               placeholder="Phone" name="phone" className="form-control"
-                               value={this.state.phone} onChange={this.changePhoneHandler}
-                        />
-                    </Form.Item>
-
-                    <Form.Item
-                        name="gender"
-                        label="Genul"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Selectați genul!',
-                            },
-                        ]}
-                    >
-                        <Select placeholder="selecteaza genul" >
-                            <Option value="sexul puternimc">Masculin< /Option>
-                            <Option value="sexul frumos">Feminin</Option>
-                            <Option value="ambele">Altele</Option>
-                            onClick={this.changeGenderHandler}
-                        </Select>
-                    </Form.Item>
 
                     <Form.Item
                         name="agreement"

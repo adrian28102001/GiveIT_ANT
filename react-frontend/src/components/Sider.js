@@ -22,7 +22,7 @@ const SiderApp = () => {
                     <div style={{padding:'40px 60px'}}>
                     <Link exact to="/add_announcement"><Button type="primary" ghost>
                         Creaza un anunt
-                    </Button></Link>gi
+                    </Button></Link>
                     </div>
                         <Menu.Item key="1">Mobila</Menu.Item>
                         <Menu.Item key="2">Pentru copii</Menu.Item>
