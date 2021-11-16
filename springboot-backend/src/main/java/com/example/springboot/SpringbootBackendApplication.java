@@ -37,8 +37,10 @@ public class SpringbootBackendApplication {
         user.setFirstName("user");
         user.setLastName("sexy");
         user.setProvince("Chisinau");
+        user.setPhone("37383232");
         user.setPassword(passwordEncoder.encode("password"));
         user.setEnabled(true);
+        //user.setAuthorities(authorities);
 
         userRepository.save(user);
     }

@@ -25,7 +25,7 @@ class User implements UserDetails {
     @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -131,7 +131,13 @@ class User implements UserDetails {
         this.province = province;
     }
 
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+
 }

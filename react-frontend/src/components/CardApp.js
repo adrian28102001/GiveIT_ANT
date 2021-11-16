@@ -4,7 +4,7 @@ import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
-const CardApp = () => (
+const CardApp = ( ) => (
     <div className={'MyCard'}>
         <Card
             style={{ width: 300 }}
