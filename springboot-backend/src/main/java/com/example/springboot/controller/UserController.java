@@ -13,16 +13,24 @@ import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/")
+
+
 public class UserController {
+
+    @GetMapping
+    public String testApp() {
+        return "Hello Spring Security!";
+    }
 
     //Inject rep by spring container
     @Autowired
     private UserRepository userRepository;
     private User user = new User();
+
     //get all users on the screen
     @GetMapping("/users")
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -30,13 +38,13 @@ public class UserController {
     @PostMapping("/users") //Handle http post request
     public User createUser(
             @RequestBody
-            User user){
+                    User user) {
         return userRepository.save(user);
     }
 
     //get user by id rest api
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUserId(@PathVariable Long id){
+    public ResponseEntity<User> getUserId(@PathVariable Long id) {
         User user = userRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("User with id:" + id + " doesn't exist."));
         return ResponseEntity.ok(user);
@@ -44,7 +52,7 @@ public class UserController {
 
     //update user rest api
     @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails){
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         User user = userRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("User with id:" + id + " doesn't exist."));
         user.setFirstName(userDetails.getFirstName());
@@ -60,7 +68,7 @@ public class UserController {
 
     //delete user rest api
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id) {
         User user = userRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("User with id:" + id + " doesn't exist."));
 

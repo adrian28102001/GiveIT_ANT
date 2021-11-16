@@ -38,24 +38,20 @@ class User implements UserDetails {
     private String province;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private boolean enabled = true;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "authority", joinColumns = @JoinColumn(referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
-    private List<Authority> authority = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userid", referencedColumnName = "id")
-    private List<PostModel> postModelList = new ArrayList<>();
+    private List<Authority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return this.email;
     }
 
     @Override
@@ -135,11 +131,7 @@ class User implements UserDetails {
         this.province = province;
     }
 
-    public List<PostModel> getPostModelList() {
-        return postModelList;
-    }
-
-    public void setPostModelList(List<PostModel> postModelList) {
-        this.postModelList = postModelList;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

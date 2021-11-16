@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/posts/")
+@RequestMapping("/")
 public class PostController {
 
     //Inject rep by spring container
