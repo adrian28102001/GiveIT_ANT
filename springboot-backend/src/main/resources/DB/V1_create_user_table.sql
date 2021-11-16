@@ -1,8 +1,6 @@
-
 CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
-    username varchar(40) UNIQUE NOT NULL,
     firstname varchar(30),
     lastname varchar(30),
     email varchar(50) UNIQUE not null,
