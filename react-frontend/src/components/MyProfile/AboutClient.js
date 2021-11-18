@@ -17,7 +17,7 @@ const AboutClient = () => {
         <div>
 
             <div className="site-card-border-less-wrapper">
-                <Card title="MyProfile" bordered={false} style={{ 'margin-left':'230px', width:'70%', 'margin-top':'30px', 'margin-bottom':'30px' }}>
+                <Card title="MyProfile" bordered={false} >
                     <Row >
                         <Col span={5}>
                         <Avatar size={128} src="https://i.ibb.co/V3NQKqC/photo-2021-09-27-14-16-38.jpg" />
@@ -108,26 +108,11 @@ const AboutClient = () => {
                                         />
                                     </Form.Item>
 
-                                    <Form.Item
-                                        name="gender"
-                                        label="Genul"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: 'Selectați genul!',
-                                            },
-                                        ]}
-                                    >
-                                        <Select placeholder="selecteaza genul">
-                                            <Option value="masculin">Masculin</Option>
-                                            <Option value="feminin">Feminin</Option>
-                                            <Option value="altele">Altele</Option>
-                                        </Select>
-                                    </Form.Item>
+
 
                                     <Form.Item >
                                         <Button type="primary" htmlType="submit">
-                                            Edit
+                                            Update
                                         </Button>
                                     </Form.Item>
                                 </Form>
