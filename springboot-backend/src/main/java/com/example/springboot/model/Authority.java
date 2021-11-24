@@ -3,47 +3,28 @@ package com.example.springboot.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name = "authority")
 @Entity
-public class Authority implements GrantedAuthority {
+public class Authority{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue
+    private Long id;
+    @Column(nullable = false)
+    private String name;
 
-    @Column(name = "rolecode")
-    private String roleCode;
+    @OneToMany(targetEntity = User.class, mappedBy = "authority", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<User> users;
 
-    @Column(name = "roledescription")
-    private String roleDescription;
+    public Authority() {}
 
-
-    @Override
-    public String getAuthority() {
-        return roleCode;
+    public Authority(String name) {
+        this.name = name;
     }
 
-    public long getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getRoleCode() {
-        return roleCode;
-    }
-
-    public void setRoleCode(String roleCode) {
-        this.roleCode = roleCode;
-    }
-
-    public String getRoleDescription() {
-        return roleDescription;
-    }
-
-    public void setRoleDescription(String roleDescription) {
-        this.roleDescription = roleDescription;
-    }
 }

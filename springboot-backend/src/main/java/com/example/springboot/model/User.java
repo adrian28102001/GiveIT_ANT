@@ -4,31 +4,29 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 //JPA annotations to map model to relational database table
 @Entity
 @Table(name = "users")
-public
-class User implements UserDetails {
+public class User{
 
     @Id // Primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private long id;
+    private Long id;
 
-    @Column(name = "firstname")
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
     @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "phone")
@@ -37,49 +35,12 @@ class User implements UserDetails {
     @Column(name = "province")
     private String province;
 
-    @Column(name = "enabled")
-    private boolean enabled = true;
+    @ManyToOne
+    @JoinColumn(name = "authority")
+    private Authority authority;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "authority", joinColumns = @JoinColumn(referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
-    private List<Authority> authorities;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.email;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return this.enabled;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return this.enabled;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return this.enabled;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return this.enabled;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -115,6 +76,10 @@ class User implements UserDetails {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -131,12 +96,12 @@ class User implements UserDetails {
         this.province = province;
     }
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
+    public Authority getAuthority() {
+        return authority;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
 

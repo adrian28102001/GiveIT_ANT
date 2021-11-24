@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import CardApp from "../components/CardApp";
 import {Row, Col, Layout} from "antd";
 
