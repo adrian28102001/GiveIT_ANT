@@ -17,6 +17,7 @@ const loginRequest = () => {
         type: LOGIN_REQUEST
     };
 };
+
 export const logoutUser = () => {
     return dispatch  => {
         dispatch(logoutRequest());
