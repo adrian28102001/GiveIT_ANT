@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import UserService from "../service/UserService";
-import {DatePicker, Space} from 'antd';
 import {
     Form,
     Input,
@@ -8,13 +7,6 @@ import {
     Checkbox,
     Button
 } from 'antd';
-
-function onChange(date, dateString) {
-    console.log(date, dateString);
-    //here
-}
-
-const {Option} = Select;
 
 
 class RegistrationForm extends Component {
@@ -24,15 +16,12 @@ class RegistrationForm extends Component {
 
         this.state = {
             //id: this.props.match.params.id,
-            userName: '',
             firstName: '',
             lastName: '',
             email: '',
-            phone: '',
-            province: '',
             password: '',
-            birthday: '',
-            gender: ''
+            phone: '',
+            province: ''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
@@ -55,7 +44,6 @@ class RegistrationForm extends Component {
             password: this.state.password,
             phone: this.state.phone,
             province: this.state.province,
-
         };
         console.log('user => ' + JSON.stringify(user));
 

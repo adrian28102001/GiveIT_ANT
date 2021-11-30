@@ -6,8 +6,8 @@ import {
     Switch,
     Upload,
     Input,
-
 } from 'antd';
+
 import {UploadOutlined} from "@ant-design/icons";
 
 const normFile = (e: any) => {

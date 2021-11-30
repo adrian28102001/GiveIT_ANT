@@ -22,7 +22,6 @@ const Register = () => {
                     <Col offset={4} span={20}>
                         <RegistrationForm/>
                     </Col>
-
                 </Row>
 
             </Layout>

@@ -26,5 +26,4 @@ public class Authority{
     public String getName() {
         return name;
     }
-
 }

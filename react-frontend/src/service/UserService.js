@@ -1,7 +1,7 @@
  import axios from "axios";
 
 //Connects react with spring server
-const USER_API_BASE_URL = "http://localhost:8080/api/v1/users";
+const USER_API_BASE_URL = "http://localhost:8080/user/register";
 
 class UserService{
 

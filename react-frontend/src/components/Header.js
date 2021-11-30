@@ -4,10 +4,53 @@ import {Row, Col, Image, Badge, Button, Affix} from "antd";
 import {MessageOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
-import DrawerForm from "../pages/LogIn";
-
+import {connect, useDispatch, useSelector} from "react-redux";
+import {authenticateUser, logoutUser} from "../service";
 
 const HeaderApp = () => {
+    const auth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch();
+    };
+
+    const guestLinks = (
+        <Link exact to={"/login"}>
+            <Button type="primary">
+                Log In
+            </Button>
+        </Link>
+    );
+
+    const userLinks = (
+        <>
+            <Col offset={14}>
+                <Badge size="small" count={5}>
+                    <Link exact to="/chat"><Button size="large" type="default" shape="circle">
+                        <MessageOutlined/>
+                    </Button></Link>
+                </Badge>
+            </Col>
+
+            <Col>
+                <Link exact to={"/login"}>
+                    <Button type="primary">
+                        Log In
+                    </Button>
+                </Link>
+            </Col>
+
+            <Col style={{marginleft: '7px'}}>
+            <Link exact to="/MyProfile"><CascadUser/></Link>
+        </Col>
+
+            <Col style={{marginleft: '25px'}}>
+                <Link to = {"/logout"} onClick={logout}>Logout</Link>
+            </Col>
+        </>
+    );
+
 
     return (
         <div className={'MyHeader'}>
@@ -27,21 +70,8 @@ const HeaderApp = () => {
                             <Link exact to={'/'}><h1 className={'GiveIt'}>GiveIt</h1></Link>
                         </Col>
 
+                        {auth.isLoggedIn ? userLinks : guestLinks}
 
-                        <Col offset={14}>
-                            <Badge size="small" count={5}>
-                                <Link exact to="/chat"><Button size="large" type="default" shape="circle">
-                                    <MessageOutlined/>
-                                </Button></Link>
-                            </Badge>
-                        </Col>
-
-                        <Col>
-                            <Link exact to ="/MyProfile"><CascadUser/></Link>
-                        </Col>
-                        <Col style={{marginleft:'7px'}}>
-                            <DrawerForm/>
-                        </Col>
                     </Row>
                 </Header>
             </Affix>
@@ -49,4 +79,17 @@ const HeaderApp = () => {
 
     );
 }
-export default HeaderApp;
+
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return{
+        authenticateUser: (email, password) => dispatch(authenticateUser(email, password))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderApp);
