@@ -29,7 +29,7 @@ class DrawerForm extends Component {
         this.props.authenticateUser(this.state.email, this.state.password);
         setTimeout(() =>{
            if(this.props.auth.isLoggedIn){
-               return this.props.history.push("/");
+               return this.props.history.push("/MyProfile");
            }
            else{
                this.resetLoginForm();

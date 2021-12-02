@@ -7,37 +7,34 @@ import {
     Checkbox,
     Button
 } from 'antd';
+import {registerUser} from "../service";
+import {connect} from "react-redux";
 
 
 class RegistrationForm extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            //id: this.props.match.params.id,
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            phone: '',
-            province: ''
-        }
-        this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
-        this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
-        this.changeEmailHandler = this.changeEmailHandler.bind(this);
-        this.changePasswordHandler = this.changePasswordHandler.bind(this);
-        this.changePhoneHandler = this.changePhoneHandler.bind(this);
-        this.changeProvinceHandler = this.changeProvinceHandler.bind(this);
-
-
-        this.saveUser = this.saveUser.bind(this);
+        this.state = this.initialState;
     }
 
-    saveUser = (event) => {
-        event.preventDefault();
+    initialState = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phone: '',
+        province: ''
+    }
 
-        let user = {
+    userChange = (event) => {
+        this.setState({
+            [event.target.name] : event.target.value
+        });
+    };
+
+    registerUser = () => {
+        let userObject = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
@@ -45,41 +42,20 @@ class RegistrationForm extends Component {
             phone: this.state.phone,
             province: this.state.province,
         };
-        console.log('user => ' + JSON.stringify(user));
+        this.props.registerUser(userObject);
+        this.resetRegistrationForm();
+        setTimeout(() => {
+            if (this.props.user.message != null){
 
-        UserService.createUser(user).then( response => {
-            this.setState({
-                post: response.data
-            });
-        });
-    }
+            }else{
 
+            }
+        }, 2000);
+    };
 
-    //Assign the new values to user
-
-    changeFirstNameHandler = (event) => {
-        this.setState({firstName: event.target.value});
-    }
-
-    changeLastNameHandler = (event) => {
-        this.setState({lastName: event.target.value});
-    }
-
-    changeEmailHandler = (event) => {
-        this.setState({email: event.target.value});
-    }
-
-    changePasswordHandler = (event) => {
-        this.setState({password: event.target.value});
-    }
-
-    changePhoneHandler = (event) => {
-        this.setState({phone: event.target.value});
-    }
-
-    changeProvinceHandler = (event) => {
-        this.setState({province: event.target.value});
-    }
+    resetRegistrationForm = () => {
+        this.setState(() => this.initialState);
+    };
 
 
 
@@ -110,7 +86,7 @@ class RegistrationForm extends Component {
                         ]}
                     >
                         <Input placeholder="Email" name="email" className="form-control"
-                               value={this.state.email} onChange={this.changeEmailHandler}/>
+                               value={this.state.email} onChange={this.userChange}/>
                     </Form.Item>
 
 
@@ -126,7 +102,7 @@ class RegistrationForm extends Component {
                         ]}
                     >
                         <Input placeholder="Last Name" name="lastName" className="form-control"
-                               value={this.state.lastName} onChange={this.changeLastNameHandler}/>
+                               value={this.state.lastName} onChange={this.userChange}/>
                     </Form.Item>
 
 
@@ -142,7 +118,7 @@ class RegistrationForm extends Component {
                         ]}
                     >
                         <Input placeholder="First Name" name="firstName" className="form-control"
-                               value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
+                               value={this.state.firstName} onChange={this.userChange}/>
                     </Form.Item>
 
                     <Form.Item
@@ -156,7 +132,7 @@ class RegistrationForm extends Component {
                         ]}
                     >
                         <Input placeholder="orasul" name="orasul" className="form-control"
-                               value={this.state.firstName} onChange={this. changeProvinceHandler}/>
+                               value={this.state.firstName} onChange={this. userChange}/>
                     </Form.Item>
 
 
@@ -177,7 +153,7 @@ class RegistrationForm extends Component {
                         <Input type={'number'}
                                prefix="+373"
                                placeholder="Phone" name="phone" className="form-control"
-                               value={this.state.phone} onChange={this.changePhoneHandler}
+                               value={this.state.phone} onChange={this.userChange}
                         />
                     </Form.Item>
 
@@ -194,7 +170,7 @@ class RegistrationForm extends Component {
                         hasFeedback
                     >
                         <Input.Password placeholder="Password" name="password" className="form-control"
-                                        value={this.state.password} onChange={this.changePasswordHandler}/>
+                                        value={this.state.password} onChange={this.userChange}/>
                     </Form.Item>
 
                     <Form.Item
@@ -219,7 +195,7 @@ class RegistrationForm extends Component {
                         ]}
                     >
                         <Input.Password placeholder="Confirm Password" name="password" className="form-control"
-                                        value={this.state.password} onChange={this.changePasswordHandler}/>
+                                        value={this.state.password} onChange={this.userChange}/>
                     </Form.Item>
 
 
@@ -240,7 +216,7 @@ class RegistrationForm extends Component {
                         </Checkbox>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit"  onClick={this.saveUser}>
+                        <Button type="primary" htmlType="submit"  onClick={this.registerUser}>
                             Register
                         </Button>
                     </Form.Item>
@@ -249,5 +225,16 @@ class RegistrationForm extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+    return{
+        user:state.user
+    }
+};
 
-export default RegistrationForm;
+const mapDispatchToProps = dispatch => {
+    return{
+        registerUser: (userObject) => dispatch(registerUser(userObject))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
