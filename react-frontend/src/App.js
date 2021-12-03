@@ -25,7 +25,7 @@ const App = () => {
                     <SiderApp/>
                 <Switch>
                     <Route path="/chat"  component={chat}/>
-                    <Route path="/home" exact component={Home}/>
+                    <Route path="/" exact component={Home}/>
                     <Route path="/add_announcement"  component={Add_announcement}/>
                     <Route path="/register"  component={Register}/>
                     <Route path="/MyProfile"  component={MyProfile}/>
