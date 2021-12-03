@@ -1,9 +1,19 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import {Card, Form, Button, Col, Input, Image, Upload, Switch} from "antd";
+import {registerUser, savePost} from "../service";
+import {connect} from "react-redux";
+import {UploadOutlined} from "@ant-design/icons";
 
-import { Card, Form, Button, Col, Input, Image } from "antd";
+const normFile = (e: any) => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+        return e;
+    }
+    return e && e.fileList;
+};
 
-export default class Announcement extends Component {
+class Announcement extends Component {
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -19,131 +29,132 @@ export default class Announcement extends Component {
     };
 
 
-
-    submitPost = (event) => {
-        alert("title: " + this.state.title+ ", description: " + this.state.description+", category: " +this.state.category+", photo: "+this.state.photo)
-        event.preventDefault();
-
-        // axios.post("http://localhost:8080/posts", post)
-        //     .then(response => {
-        //         if (response.data != null){
-        //             this.setState(this.initialState);
-        //             alert("Post saved successfully");
-        //
-        //         }
-        //     })
-    };
-
     resetPost = () => {
         this.setState(() => this.initialState);
     }
 
+    submitPost = event => {
+        event.preventDefault();
 
-    postChange = (event) => {
+        const post = {
+            title:  this.state.title,
+            description:  this.state.description,
+            category: this.state.category,
+            photo: this.state.photo
+        }
+        axios.post("http://localhost:8080/posts/add-post", post)
+            .then(response => {
+                if (response.data != null){
+                    this.setState(this.initialState);
+                    alert("Post saved successfully");
+                }
+            } )
+    };
+
+    postChange = event => {
         this.setState({
             [event.target.name]: event.target.value,
         });
     };
 
     render() {
-        const { title, description, category, photo } = this.state;
-
         return (
-            <div>
-                <Card className={"border border-dark bg-dark text-white"}>
-                    <Form
-                        onReset={this.resetPost}
-                        onSubmit={this.state.id ? this.updatePost : this.submitPost}
-                        id="FormId"
+            <>
+                <Form
+                    labelCol={{
+                        span: 4,
+                    }}
+                    wrapperCol={{
+                        span: 14,
+                    }}
+                >
+                    <Form.Item
+                        name="title"
+                        label="Titlu"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Introduceți titlu!',
+                                whitespace: true,
+                            },
+                        ]}
                     >
-                        <Card.Body>
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="formGridTitle">
-                                    <Form.Label>Title</Form.Label>
-                                    <Form.Control
-                                        required
-                                        autoComplete="off"
-                                        type="test"
-                                        name="title"
-                                        value={title}
-                                        onChange={this.postChange}
-                                        className={"bg-dark text-white"}
-                                        placeholder="Enter Post Title"
-                                    />
-                                </Form.Group>
-                                <Form.Group as={Col} controlId="formGridDescription">
-                                    <Form.Label>Description</Form.Label>
-                                    <Form.Control
-                                        required
-                                        autoComplete="off"
-                                        type="test"
-                                        name="description"
-                                        value={description}
-                                        onChange={this.postChange}
-                                        className={"bg-dark text-white"}
-                                        placeholder="Enter Post Description"
-                                    />
-                                </Form.Group>
-                                <Form.Group as={Col} controlId="formGridCategory">
-                                    <Form.Label>Category</Form.Label>
-                                    <Form.Control
-                                        required
-                                        autoComplete="off"
-                                        type="test"
-                                        name="category"
-                                        value={category}
-                                        onChange={this.postChange}
-                                        className={"bg-dark text-white"}
-                                        placeholder="Enter Post Category"
-                                    />
-                                </Form.Group>
-                            </Form.Row>
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="formGridPhoto">
-                                    <Form.Label>Photo</Form.Label>
-                                    <Input>
-                                        <Form.Control
-                                            required
-                                            autoComplete="off"
-                                            type="test"
-                                            name="Photo"
-                                            value={photo}
-                                            onChange={this.postChange}
-                                            className={"bg-dark text-white"}
-                                            placeholder="Enter Post Photo URL"
-                                        />
-                                        <Input.Append>
-                                            {this.state.photo !== "" && (
-                                                <Image
-                                                    src={this.state.photo}
-                                                    roundedRight
-                                                    width="40"
-                                                    height="38"
-                                                />
-                                            )}
-                                        </Input.Append>
-                                    </Input>
-                                </Form.Group>
+                        <Input placeholder="title" name="title" className="form-control"
+                               value={this.state.title} onChange={this.postChange}/>
+                    </Form.Item>
 
-                            </Form.Row>
-                        </Card.Body>
-                        <Card.Footer style={{ textAlign: "right" }}>
-                            <Button size="sm" variant="success" type="submit">
-                                {this.state.id ? "Update" : "Save"}
-                            </Button>{" "}
-                            <Button size="sm" variant="info" type="reset">
-                            </Button>{" "}
-                            {/*<Button*/}
-                            {/*    size="sm"*/}
-                            {/*    variant="info"*/}
-                            {/*    type="button"*/}
-                            {/*    onClick={() => this.AnnouncementList()}*/}
-                            {/*>Announcement List*/}
-                            {/*</Button>*/}
-                        </Card.Footer>
-                    </Form>
-                </Card>
-            </div>
+                    <Form.Item
+                        name="description"
+                        label="Description"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Description',
+                                whitespace: true,
+                            },
+                        ]}
+                    >
+                        <Input rows={4} placeholder="Description" name="description" className="form-control"
+                               value={this.state.description} onChange={this.postChange}/>
+                    </Form.Item>
+
+                    <Form.Item
+                        name="category"
+                        label="category"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'category',
+                                whitespace: true,
+                            },
+                        ]}
+                    >
+                        <Input placeholder="category"
+                               name="category"
+                               className="form-control"
+                               value={this.state.category}
+                               onChange={this.postChange}/>
+                    </Form.Item>
+
+                    <Form.Item
+                        name="upload"
+                        label="Upload"
+                        valuePropName="fileList"
+                        getValueFromEvent={normFile}
+                    >
+                        <Upload name="logo" action="/upload.do" listType="picture">
+                            <Button icon={<UploadOutlined />}>Click to upload</Button>
+                        </Upload>
+                    </Form.Item>
+
+                    <Form.Item label="Termeni&Conditii" valuePropName="checked">
+                        <Switch />
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button type="primary"
+                                htmlType="submit"
+                                onClick={this.submitPost}
+                        >
+                            Submit
+                        </Button>
+                    </Form.Item>
+
+                </Form>
+            </>
         );
     }
 }
+const mapStateToProps = state => {
+    return{
+        postObject:state.post
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return{
+        savePost: (postObject) => dispatch(savePost(postObject))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Announcement);

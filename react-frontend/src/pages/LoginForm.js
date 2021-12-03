@@ -8,7 +8,7 @@ import {authenticateUser} from "../service";
 
 // eslint-disable-next-line no-empty-pattern
 
-class DrawerForm extends Component {
+class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -29,7 +29,7 @@ class DrawerForm extends Component {
         this.props.authenticateUser(this.state.email, this.state.password);
         setTimeout(() =>{
            if(this.props.auth.isLoggedIn){
-               return this.props.history.push("/MyProfile");
+               return this.props.history.push("/home");
            }
            else{
                this.resetLoginForm();
@@ -46,7 +46,7 @@ class DrawerForm extends Component {
         const {email, password, error} = this.state;
         return (
             <div>
-                {error && <Alert variant={"danger"} message={error}>{error}</Alert>}
+                {/*{error && <Alert variant={"danger"} message={error}>{error}</Alert>}*/}
                 <Form
                     name="normal_login"
                     className="login-form"
@@ -54,24 +54,30 @@ class DrawerForm extends Component {
                 >
                     <Form.Item
                         name="email"
-                        rules={[{required: true, message: 'Please input your Email!'}]}
+                        rules={[{
+                            required: true,
+                            message: 'Please input your Email!'}
+                        ]}
                     >
                         <Input prefix={<UserOutlined className="site-form-item-icon"/>}
                                placeholder="Email"
-                               value = {email}
+                               value = {this.state.email}
                                onChange={this.credentialChange}
                         />
                     </Form.Item>
 
                     <Form.Item
                         name="password"
-                        rules={[{required: true, message: 'Please input your Password!'}]}
+                        rules={[{
+                            required: true,
+                            message: 'Please input your Password!'}
+                        ]}
                     >
                         <Input
                             prefix={<LockOutlined className="site-form-item-icon"/>}
                             type="password"
                             placeholder="Password"
-                            value = {password}
+                            value = {this.state.password}
                             onChange={this.credentialChange}
                         />
                     </Form.Item>
@@ -103,7 +109,8 @@ class DrawerForm extends Component {
                             type="button"
                             variant="info"
                             onClick={this.resetLoginForm}
-                        >Reset
+                        >
+                            Reset
                         </Button>
                     </Form.Item>
                 </Form>
@@ -124,4 +131,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DrawerForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

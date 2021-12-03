@@ -5,7 +5,7 @@ import {MessageOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
 import {connect, useDispatch, useSelector} from "react-redux";
-import { logoutUser} from "../service";
+import {logoutUser} from "../service";
 
 
 class HeaderApp extends Component {
@@ -17,11 +17,13 @@ class HeaderApp extends Component {
     render() {
 
         const guestLinks = (
-            <Link exact to={"/login"}>
-                <Button type="primary">
-                    Log In
-                </Button>
-            </Link>
+            <>
+                <Link exact to={"/login"}>
+                    <Button type="primary">
+                        Log In
+                    </Button>
+                </Link>
+            </>
         );
 
         const userLinks = (
@@ -75,7 +77,7 @@ class HeaderApp extends Component {
             </div>
 
         );
-    }
+    };
 }
 
 const mapStateToProps = state => {
@@ -85,9 +87,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         logoutUser: () => dispatch(logoutUser())
-        // authenticateUse r: (email, password) => dispatch(authenticateUser(email, password))
+        // authenticateUser: (email, password) => dispatch(authenticateUser(email, password))
     };
 };
 

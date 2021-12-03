@@ -40,7 +40,7 @@ class RegistrationForm extends Component {
             email: this.state.email,
             password: this.state.password,
             phone: this.state.phone,
-            province: this.state.province,
+            province: this.state.province
         };
         this.props.registerUser(userObject);
         this.resetRegistrationForm();
@@ -132,7 +132,7 @@ class RegistrationForm extends Component {
                         ]}
                     >
                         <Input placeholder="orasul" name="orasul" className="form-control"
-                               value={this.state.firstName} onChange={this. userChange}/>
+                               value={this.state.province} onChange={this.userChange}/>
                     </Form.Item>
 
 
@@ -219,11 +219,21 @@ class RegistrationForm extends Component {
                         <Button type="primary" htmlType="submit"  onClick={this.registerUser}>
                             Register
                         </Button>
+
+                        <Button
+                            size="sm"
+                            type="button"
+                            variant="info"
+                            onClick={this.resetRegistrationForm}
+                        >
+                            Reset
+                        </Button>
                     </Form.Item>
+
                 </Form>
             </>
         );
-    }
+    };
 }
 const mapStateToProps = state => {
     return{

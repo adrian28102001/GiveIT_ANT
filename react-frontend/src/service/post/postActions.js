@@ -1,5 +1,6 @@
 import * as PT from "./postTypes";
 import axios from "axios";
+import {POST_CATEGORIES} from "./postTypes";
 
 export const savePost = (post) => {
     return (dispatch) => {
@@ -79,3 +80,10 @@ const postFailure = (error) => {
     };
 };
 
+export const fetchCategories = () => {
+    return dispatch => {
+        dispatch({
+            type: PT.POST_CATEGORIES
+        })
+    }
+}

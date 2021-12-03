@@ -14,8 +14,6 @@ import MyProfile from "./components/MyProfile/MyProfile";
 import SiderApp from "./components/Sider";
 import Register from "./pages/RegisterPage";
 import Announcement from "./components/Announcement";
-import DrawerForm from "./pages/LogIn";
-import Login from "./pages/LoginPage";
 import LoginPage from "./pages/LoginPage";
 
 const App = () => {
@@ -27,8 +25,8 @@ const App = () => {
                     <SiderApp/>
                 <Switch>
                     <Route path="/chat"  component={chat}/>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/add_announcement"  component={Announcement}/>
+                    <Route path="/home" exact component={Home}/>
+                    <Route path="/add_announcement"  component={Add_announcement}/>
                     <Route path="/register"  component={Register}/>
                     <Route path="/MyProfile"  component={MyProfile}/>
                     <Route path="/login"  component={LoginPage}/>

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import CardApp from "../components/CardApp";
-import {Row, Col, Layout} from "antd";
+import {Row, Col, Layout, Alert} from "antd";
 import axios from "axios";
 import authToken from "../utils/authToken";
+import {connect} from "react-redux";
 
 
-const Home = () => {
+const Home = (props) => {
     if (localStorage.jwtToken) {
         authToken(localStorage.jwtToken);
     }
@@ -18,6 +19,7 @@ const Home = () => {
 
     return(
         <>
+            <Alert variant="success">Welcome {props.auth.username}</Alert>
             <Layout>
                 <Row align={'center'}>
                     {products.map((p) => <CardApp product={p}/>)}
@@ -27,4 +29,10 @@ const Home = () => {
     );
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return{
+        auth:state.auth
+    }
+};
+
+export default connect(mapStateToProps)(Home);

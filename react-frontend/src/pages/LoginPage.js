@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from "antd/es/layout/layout";
 import {Col, Row} from "antd";
-import DrawerForm from "./LogIn";
+import LoginForm from "./LoginForm";
 
 
 
@@ -20,7 +20,7 @@ const Login = () => {
 
                 <Row>
                     <Col offset={4} span={20}>
-                        <DrawerForm/>
+                        <LoginForm/>
                     </Col>
                 </Row>
 
