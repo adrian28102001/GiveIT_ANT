@@ -208,19 +208,21 @@ class RegistrationForm extends Component {
                                     value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
                             },
                         ]}
-
                     >
                         <Checkbox>
                             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             Sunt de acord cu <a href="">termenii și condițiile</a>
                         </Checkbox>
                     </Form.Item>
+
                     <Form.Item>
                         <Button type="primary" htmlType="submit"  onClick={this.registerUser}>
                             Register
                         </Button>
+                    </Form.Item>
 
-                        <Button
+                    <Form.Item>
+                    <Button
                             size="sm"
                             type="button"
                             variant="info"

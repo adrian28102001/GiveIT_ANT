@@ -1,12 +1,15 @@
 import * as AT from './authTypes'
 import axios from "axios";
 
-export const authenticateUser = (email, password) => async (dispatch) => {
+export const authenticateUser = (userObject) => async (dispatch) => {
     dispatch({
         type: AT.LOGIN_REQUEST
     });
 
     try {
+        let email = userObject.email;
+        let password = userObject.password;
+
         const response = await axios.post("http://localhost:8080/user/authenticate", {
             email: email,
             password: password

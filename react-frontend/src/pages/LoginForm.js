@@ -6,7 +6,6 @@ import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {authenticateUser} from "../service";
 
-// eslint-disable-next-line no-empty-pattern
 
 class LoginForm extends Component {
     constructor(props) {
@@ -21,20 +20,23 @@ class LoginForm extends Component {
 
     credentialChange = (event) => {
         this.setState({
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         });
     };
 
     validateUser = () => {
-        this.props.authenticateUser(this.state.email, this.state.password);
-        setTimeout(() =>{
-           if(this.props.auth.isLoggedIn){
-               return this.props.history.push("/MyProfile");
-           }
-           else{
-               this.resetLoginForm();
-               this.setState({"error":"Invalid email and password"});
-           }
+        let userObject = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        this.props.authenticateUser(userObject);
+        setTimeout(() => {
+            if (this.props.auth.isLoggedIn) {
+                //return this.props.history.push("/add_announcement");
+            } else {
+                this.resetLoginForm();
+                this.setState({"error": "Invalid email and password"});
+            }
         }, 500);
     };
 
@@ -43,25 +45,24 @@ class LoginForm extends Component {
     };
 
     render() {
-        const {email, password, error} = this.state;
         return (
             <div>
                 {/*{error && <Alert variant={"danger"} message={error}>{error}</Alert>}*/}
                 <Form
-                    name="normal_login"
-                    className="login-form"
-                    initialValues={{remember: true}}
                 >
                     <Form.Item
                         name="email"
                         rules={[{
                             required: true,
-                            message: 'Please input your Email!'}
+                            message: 'Please input your Email!'
+                        }
                         ]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon"/>}
+                        <Input
                                placeholder="Email"
-                               value = {this.state.email}
+                               name="email"
+                               className="form-control"
+                               value={this.state.email}
                                onChange={this.credentialChange}
                         />
                     </Form.Item>
@@ -70,14 +71,16 @@ class LoginForm extends Component {
                         name="password"
                         rules={[{
                             required: true,
-                            message: 'Please input your Password!'}
+                            message: 'Please input your Password!'
+                        }
                         ]}
                     >
-                        <Input
-                            prefix={<LockOutlined className="site-form-item-icon"/>}
+                        <Input.Password
+                            name="password"
+                            className="form-control"
                             type="password"
                             placeholder="Password"
-                            value = {this.state.password}
+                            value={this.state.password}
                             onChange={this.credentialChange}
                         />
                     </Form.Item>
@@ -101,9 +104,13 @@ class LoginForm extends Component {
                         >
                             Log in
                         </Button>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        Or <Link exact to={"/register"}><a href="">register now!</a></Link>
+                    </Form.Item>
 
+                    <Form.Item>
+                        Or <Link exact to={"/register"}><a href="">register now!</a></Link>
+                    </Form.Item>
+
+                    <Form.Item>
                         <Button
                             size="sm"
                             type="button"
@@ -113,6 +120,7 @@ class LoginForm extends Component {
                             Reset
                         </Button>
                     </Form.Item>
+
                 </Form>
             </div>
         );
@@ -120,14 +128,14 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => {
-    return{
-        auth:state.auth
+    return {
+        auth: state.auth
     }
 };
 
 const mapDispatchToProps = dispatch => {
-    return{
-        authenticateUser: (email, password) => dispatch(authenticateUser(email, password))
+    return {
+        authenticateUser: (userObject) => dispatch(authenticateUser(userObject))
     };
 };
 
