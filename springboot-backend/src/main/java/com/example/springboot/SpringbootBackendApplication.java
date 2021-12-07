@@ -55,6 +55,38 @@ public class SpringbootBackendApplication implements CommandLineRunner{
             user2.setAuthority(roleService.findByName(RolesEnum.ADMIN.toString()));
             user2.setPassword(new BCryptPasswordEncoder().encode("testadmin"));
             userService.saveOrUpdate(user2);
+
+            User user3 = new User();
+            user3.setEmail("george@admin.com");
+            user3.setFirstName("Test Admin");
+            user3.setPhone("9787456545");
+            user3.setAuthority(roleService.findByName(RolesEnum.ADMIN.toString()));
+            user3.setPassword(new BCryptPasswordEncoder().encode("george"));
+            userService.saveOrUpdate(user3);
+
+            User user4 = new User();
+            user4.setEmail("valeria@admin.com");
+            user4.setFirstName("valeria Admin");
+            user4.setPhone("9787456545");
+            user4.setAuthority(roleService.findByName(RolesEnum.ADMIN.toString()));
+            user4.setPassword(new BCryptPasswordEncoder().encode("valeria"));
+            userService.saveOrUpdate(user4);
+
+            User user5 = new User();
+            user5.setEmail("valentina@admin.com");
+            user5.setFirstName("valentina Admin");
+            user5.setPhone("9787456545");
+            user5.setAuthority(roleService.findByName(RolesEnum.ADMIN.toString()));
+            user5.setPassword(new BCryptPasswordEncoder().encode("valentina"));
+            userService.saveOrUpdate(user5);
+
+            User user6 = new User();
+            user6.setEmail("adrian@admin.com");
+            user6.setFirstName("adrian Admin");
+            user6.setPhone("9787456545");
+            user6.setAuthority(roleService.findByName(RolesEnum.ADMIN.toString()));
+            user6.setPassword(new BCryptPasswordEncoder().encode("adrian"));
+            userService.saveOrUpdate(user6);
         }
 
         if (postService.findAll().isEmpty()) {
