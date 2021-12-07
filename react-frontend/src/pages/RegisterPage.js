@@ -11,15 +11,16 @@ const Register = () => {
             <Layout>
 
                     <Row>
-                        <h1 style={{'font-size':28,
-                            'margin-left':'70px',
-                            'padding':'25px'
+                        <h1 style={{'font-size':36,
+                            marginLeft:'70px',
+                            padding:'25px',
+                            color:'#1890ff'
                         }}>
                             Înregistreaza-te</h1>
                     </Row>
 
                 <Row>
-                    <Col offset={4} span={20}>
+                    <Col offset={5} >
                         <RegistrationForm/>
                     </Col>
                 </Row>

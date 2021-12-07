@@ -64,11 +64,12 @@ class RegistrationForm extends Component {
             <>
                 <Form
                     labelCol={{
-                        span: 4,
+                        span: 10,
                     }}
                     wrapperCol={{
-                        span: 14,
+                        span: 17,
                     }}
+                    style={{width:500}}
                 >
 
                     <Form.Item
@@ -100,6 +101,7 @@ class RegistrationForm extends Component {
                                 whitespace: true,
                             },
                         ]}
+                        style={{width:500}}
                     >
                         <Input placeholder="Last Name" name="lastName" className="form-control"
                                value={this.state.lastName} onChange={this.userChange}/>
@@ -116,6 +118,7 @@ class RegistrationForm extends Component {
                                 whitespace: true,
                             },
                         ]}
+                        style={{width:500}}
                     >
                         <Input placeholder="First Name" name="firstName" className="form-control"
                                value={this.state.firstName} onChange={this.userChange}/>
@@ -130,6 +133,7 @@ class RegistrationForm extends Component {
                                 whitespace: true,
                             },
                         ]}
+                        style={{width:500}}
                     >
                         <Input placeholder="orasul" name="orasul" className="form-control"
                                value={this.state.province} onChange={this.userChange}/>
@@ -148,6 +152,7 @@ class RegistrationForm extends Component {
                                 message: 'Introduceți numarul de telefon!',
                             },
                         ]}
+                        style={{width:500}}
                     >
 
                         <Input type={'number'}
@@ -167,6 +172,7 @@ class RegistrationForm extends Component {
                                 message: 'Introducreți parola!',
                             },
                         ]}
+                        style={{width:500}}
                         hasFeedback
                     >
                         <Input.Password placeholder="Password" name="password" className="form-control"
@@ -193,6 +199,7 @@ class RegistrationForm extends Component {
                                 },
                             }),
                         ]}
+                        style={{width:500}}
                     >
                         <Input.Password placeholder="Confirm Password" name="password" className="form-control"
                                         value={this.state.password} onChange={this.userChange}/>
@@ -208,6 +215,7 @@ class RegistrationForm extends Component {
                                     value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
                             },
                         ]}
+                        style={{width:500}}
                     >
                         <Checkbox>
                             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -218,17 +226,6 @@ class RegistrationForm extends Component {
                     <Form.Item>
                         <Button type="primary" htmlType="submit"  onClick={this.registerUser}>
                             Register
-                        </Button>
-                    </Form.Item>
-
-                    <Form.Item>
-                    <Button
-                            size="sm"
-                            type="button"
-                            variant="info"
-                            onClick={this.resetRegistrationForm}
-                        >
-                            Reset
                         </Button>
                     </Form.Item>
 
