@@ -13,8 +13,8 @@ import Add_announcement from "./pages/Add_announcement";
 import MyProfile from "./components/MyProfile/MyProfile";
 import SiderApp from "./components/Sider";
 import Register from "./pages/RegisterPage";
-import Announcement from "./components/Announcement";
 import LoginPage from "./pages/LoginPage";
+import DetailsPage from "./pages/detailsPage";
 
 const App = () => {
     return (
@@ -30,6 +30,8 @@ const App = () => {
                     <Route path="/register"  component={Register}/>
                     <Route path="/MyProfile"  component={MyProfile}/>
                     <Route path="/login"  component={LoginPage}/>
+                    <Route path="/details/${id}"  component={DetailsPage}/>
+
                     {/*<Route path="/logout  component={}/>*/}
 
 

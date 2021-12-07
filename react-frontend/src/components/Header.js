@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {logoutUser} from "../service";
+import logo from "../assets/logo2.png";
 
 
 class HeaderApp extends Component {
@@ -67,8 +68,8 @@ class HeaderApp extends Component {
                         <Row>
                             <Col offset={1}>
                                 <Link exact to={'/'}><Image.PreviewGroup>
-                                    <Image width={65} preview={false} style={{padding: '5px 5px'}}
-                                           src="https://i.ibb.co/845rwyF/output-onlinepngtools-4.png"/>
+                                    <Image width={70} preview={false} style={{padding: '5px 5px'}}
+                                           src={logo}/>
                                 </Image.PreviewGroup></Link>
                             </Col>
                             <Col>

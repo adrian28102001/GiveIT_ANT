@@ -1,9 +1,6 @@
 import React from 'react';
 import {Col, Layout, Row} from "antd";
-import CreeazaAnunt from "../components/CreeazaAnunt";
 import Announcement from "../components/Announcement";
-import RegistrationForm from "../components/RegistrationForm";
-
 
 const Add_announcement = () => {
     return (
