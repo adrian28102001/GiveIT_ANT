@@ -1,17 +1,33 @@
 import React from 'react';
-import {Layout} from "antd";
+import {Col, Layout, Row} from "antd";
 import CreeazaAnunt from "../components/CreeazaAnunt";
 import Announcement from "../components/Announcement";
+import RegistrationForm from "../components/RegistrationForm";
 
 
 const Add_announcement = () => {
     return (
         <>
-            <Layout>
-               <Announcement/>
-            </Layout>
+            <Layout style={{height:'100vh'}}>
 
+                <Row>
+                    <h1 style={{'font-size':36,
+                        marginLeft:'70px',
+                        padding:'25px',
+                        color:'#1890ff'
+                    }}>
+                        Creeaza  un anunt</h1>
+                </Row>
+
+                <Row>
+                    <Col offset={5} >
+                        <Announcement/>
+                    </Col>
+                </Row>
+
+            </Layout>
         </>
+
     );
 }
 export default Add_announcement;

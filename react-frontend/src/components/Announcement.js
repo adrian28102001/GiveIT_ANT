@@ -62,11 +62,12 @@ class Announcement extends Component {
             <>
                 <Form
                     labelCol={{
-                        span: 4,
+                        span: 10,
                     }}
                     wrapperCol={{
-                        span: 14,
+                        span: 17,
                     }}
+                    style={{width:500}}
                 >
                     <Form.Item
                         name="title"
@@ -78,38 +79,41 @@ class Announcement extends Component {
                                 whitespace: true,
                             },
                         ]}
+                        style={{width:500}}
                     >
-                        <Input placeholder="title" name="title" className="form-control"
+                        <Input placeholder="Adauga Titlu" name="title" className="form-control"
                                value={this.state.title} onChange={this.postChange}/>
                     </Form.Item>
 
                     <Form.Item
                         name="description"
-                        label="Description"
+                        label="Descriere"
                         rules={[
                             {
                                 required: true,
-                                message: 'Description',
+                                message: 'Adauga descrierea',
                                 whitespace: true,
                             },
                         ]}
+                        style={{width:500}}
                     >
-                        <Input rows={4} placeholder="Description" name="description" className="form-control"
+                        <Input rows={4} placeholder="Adauga descrierea" name="description" className="form-control"
                                value={this.state.description} onChange={this.postChange}/>
                     </Form.Item>
 
                     <Form.Item
                         name="category"
-                        label="category"
+                        label="Categorie"
                         rules={[
                             {
                                 required: true,
-                                message: 'category',
+                                message: 'Adauga Categoria',
                                 whitespace: true,
                             },
                         ]}
+                        style={{width:500}}
                     >
-                        <Input placeholder="category"
+                        <Input placeholder="Categorie"
                                name="category"
                                className="form-control"
                                value={this.state.category}
@@ -117,13 +121,21 @@ class Announcement extends Component {
                     </Form.Item>
 
                     <Form.Item
+
                         name="upload"
-                        label="Upload"
+                        label="Adauga poza"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Incarca poza!',
+                                whitespace: true,
+                            },
+                        ]}
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     >
                         <Upload name="logo" action="/upload.do" listType="picture">
-                            <Button icon={<UploadOutlined />}>Click to upload</Button>
+                            <Button icon={<UploadOutlined />}>Apasa pentru a incarca poza</Button>
                         </Upload>
                     </Form.Item>
 
@@ -136,7 +148,7 @@ class Announcement extends Component {
                                 htmlType="submit"
                                 onClick={this.submitPost}
                         >
-                            Submit
+                            Posteaza
                         </Button>
                     </Form.Item>
 
