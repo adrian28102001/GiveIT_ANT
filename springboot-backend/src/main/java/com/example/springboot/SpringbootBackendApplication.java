@@ -63,8 +63,7 @@ public class SpringbootBackendApplication implements CommandLineRunner{
                 post.setTitle("Spring Microservices in Action " + i);
                 post.setDescription("Author: John Carnell the " + i);
                 post.setCategory("Books");
-                post.setPhoto(
-                        "https://images-na.ssl-images-amazon.com/images/I/417zLTa1uqL._SX397_BO1,204,203,200_.jpg");
+                post.setPhoto( "https://cdn.shopify.com/s/files/1/1556/1715/products/Assets_0016_RALPH-LAUREN-POLO-BLUE_1024x.png");
                 postService.saveOrUpdate(post);
             }
         }
