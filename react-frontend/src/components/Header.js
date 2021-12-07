@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import {Header} from "antd/es/layout/layout";
-import {Row, Col, Image, Badge, Button, Affix} from "antd";
+import {Row, Col, Image, Badge, Button, Affix, Drawer} from "antd";
 import {MessageOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
@@ -18,17 +18,25 @@ class HeaderApp extends Component {
 
         const guestLinks = (
             <>
+                <Col offset={17}>
                 <Link exact to={"/login"}>
-                    <Button type="primary">
+                    <Button type="text">
                         Log In
                     </Button>
                 </Link>
+
+                    <Link exact to={"/register"}>
+                        <Button type="text" style={{color:'#1890ff'}} >
+                            Register
+                        </Button>
+                    </Link>
+                </Col>
             </>
         );
 
         const userLinks = (
             <>
-                <Col offset={14}>
+                <Col offset={16}>
                     <Badge size="small" count={5}>
                         <Link exact to="/chat"><Button size="large" type="default" shape="circle">
                             <MessageOutlined/>
@@ -36,21 +44,19 @@ class HeaderApp extends Component {
                     </Badge>
                 </Col>
 
-                <Col>
+                <Col style={{marginLeft: '5px'}}>
+                    <Link exact to="/MyProfile"><CascadUser/></Link>
+                </Col>
+
+                <Col style={{marginLeft :'5px'} }>
                     <Link exact to={"/"} onClick={this.logout}>
-                        <Button type="primary">
-                            Logout
+                        <Button type="text" style={{color:'#1890ff'}}>
+                            Log Out
                         </Button>
                     </Link>
                 </Col>
-
-                <Col style={{marginleft: '7px'}}>
-                    <Link exact to="/MyProfile"><CascadUser/></Link>
-                </Col>
             </>
         );
-
-
         return (
             <div className={'MyHeader'}>
                 <Affix offsetTop={0}>
@@ -68,9 +74,7 @@ class HeaderApp extends Component {
                             <Col>
                                 <Link exact to={'/'}><h1 className={'GiveIt'}>GiveIt</h1></Link>
                             </Col>
-
                             {this.props.auth.isLoggedIn ? userLinks : guestLinks}
-
                         </Row>
                     </Header>
                 </Affix>

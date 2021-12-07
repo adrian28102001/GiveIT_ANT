@@ -21,7 +21,10 @@ class SiderApp extends Component {
         );
 
         const guestLinks = (
-            <div>
+            <div style={{padding: '40px 60px'}}>
+                <Link exact to="/login"><Button type="primary" ghost>
+                    Creaza un anunt
+                </Button></Link>
             </div>
         );
 
@@ -41,8 +44,6 @@ class SiderApp extends Component {
                         }}>
 
                         {this.props.auth.isLoggedIn ? userLinks : guestLinks}
-
-
                         <Menu.Item key="1">Mobila</Menu.Item>
                         <Menu.Item key="2">Pentru copii</Menu.Item>
                         <Menu.Item key="3">Tehnica</Menu.Item>

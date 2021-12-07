@@ -116,17 +116,10 @@ const AboutClient = () => {
                                         </Button>
                                     </Form.Item>
                                 </Form>
-
                         </Col>
                     </Row>
                 </Card>
             </div>
-
-
-
-
-
-
         </div>
 
     );

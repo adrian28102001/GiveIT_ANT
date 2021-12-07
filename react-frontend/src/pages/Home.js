@@ -18,17 +18,15 @@ const Home = (props) => {
     }, [])
 
     return(
-        <>
-            <Alert variant="success">Welcome {props.auth.username}</Alert>
+<>
             <Layout>
-                <Row align={'center'}>
+                <Row style={{padding:'50px', marginLeft:100}}>
                     {products.map((p) => <CardApp product={p}/>)}
                 </Row>
             </Layout>
-        </>
+</>
     );
 }
-
 const mapStateToProps = state => {
     return{
         auth:state.auth

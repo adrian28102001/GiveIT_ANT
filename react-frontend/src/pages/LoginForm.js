@@ -57,6 +57,7 @@ class LoginForm extends Component {
                             message: 'Please input your Email!'
                         }
                         ]}
+                        style={{width:400}}
                     >
                         <Input
                                placeholder="Email"
@@ -110,16 +111,6 @@ class LoginForm extends Component {
                         Or <Link exact to={"/register"}><a href="">register now!</a></Link>
                     </Form.Item>
 
-                    <Form.Item>
-                        <Button
-                            size="sm"
-                            type="button"
-                            variant="info"
-                            onClick={this.resetLoginForm}
-                        >
-                            Reset
-                        </Button>
-                    </Form.Item>
 
                 </Form>
             </div>

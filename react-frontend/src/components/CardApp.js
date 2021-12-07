@@ -6,7 +6,7 @@ const { Meta } = Card;
 const CardApp = ( {product}) => (
     <div className={'MyCard'}>
         <Card
-            style={{ width: 300 }}
+            style={{ width: 240, margin:'10px' }}
             cover={
                 <img
                     alt="example"
