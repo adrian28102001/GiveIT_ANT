@@ -19,6 +19,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/user")
@@ -83,5 +85,11 @@ public class UserController {
             return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.UNAUTHORIZED);
         }
         return null;
+    }
+
+    @GetMapping("/MyProfile")
+    @ResponseBody
+    public User currentUserName(Principal principal) {
+        return userRepository.findByEmail(principal.getName());
     }
 }
