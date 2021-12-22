@@ -7,9 +7,6 @@ import {connect} from "react-redux";
 
 
 const Home = (props) => {
-    if (localStorage.jwtToken) {
-        authToken(localStorage.jwtToken);
-    }
 
     const [products, setProducts] = useState([]);
 
