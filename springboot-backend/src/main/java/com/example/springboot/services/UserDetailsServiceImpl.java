@@ -1,5 +1,6 @@
 package com.example.springboot.services;
 
+import com.example.springboot.model.MyUserDetails;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Email " + email + " not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                getGrantedAuthority(user));
+        return new MyUserDetails(user);
+//                new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+//                getGrantedAuthority(user));
     }
 
     private Collection<GrantedAuthority> getGrantedAuthority(User user) {

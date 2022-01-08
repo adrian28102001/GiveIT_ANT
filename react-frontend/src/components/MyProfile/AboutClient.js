@@ -17,22 +17,16 @@ const { Option } = Select;
 
 const AboutClient = () => {
 
-    const [user, setUser] = useState();
-
-    useEffect(() => {
-        axios.get("http://localhost:8080/user/MyProfile", { headers: {"Authorization" : `Bearer ${localStorage.jwtToken}`} }).then(({data}) => setUser(data))
-    }, )
-
     return (
         <div>
             <div className="site-card-border-less-wrapper">
                 <Card title="MyProfile" bordered={false} >
+                  {/* <h1> [[${this.#request.userPrinciple.principal.username}]]</h1>*/}
                     <Row >
                         <Col span={5}>
                             <Avatar size={128} src="https://i.ibb.co/V3NQKqC/photo-2021-09-27-14-16-38.jpg" />
                         </Col>
                         <Col span={19}>
-                            <h1>{user.email}</h1>
                             <Form
                                 labelCol={{
                                     span: 4,
