@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import {Card, Form, Button, Col, Input, Image, Upload, Switch} from "antd";
+import {Card, Form, Button, Col, Input, Image, Upload, Switch, Select} from "antd";
 import {registerUser, savePost} from "../service";
 import {connect} from "react-redux";
 import {UploadOutlined} from "@ant-design/icons";
+import {Option} from "antd/es/mentions";
 
 const normFile = (e: any) => {
     console.log('Upload event:', e);
@@ -24,7 +25,7 @@ class Announcement extends Component {
     initialState = {
         id: "",
         description: "",
-        category: "",
+        category: "Mobila si interior",
         photo: ""
     };
 
@@ -57,6 +58,10 @@ class Announcement extends Component {
         });
     };
 
+    handleChange= e =>{
+    this.setState({category:e});
+}
+
     render() {
         return (
             <>
@@ -68,6 +73,8 @@ class Announcement extends Component {
                         span: 17,
                     }}
                     style={{width:500}}
+                    // onSubmit={this.submitPost}
+                    onSubmitCapture={this.submitPost}
                 >
                     <Form.Item
                         name="title"
@@ -97,31 +104,62 @@ class Announcement extends Component {
                         ]}
                         style={{width:500}}
                     >
-                        <Input rows={4} placeholder="Adauga descrierea" name="description" className="form-control"
+                        <Input.TextArea rows={5} placeholder="Adauga descrierea" name="description"  className="form-control"
                                value={this.state.description} onChange={this.postChange}/>
                     </Form.Item>
 
-                    <Form.Item
-                        name="category"
-                        label="Categorie"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Adauga Categoria',
-                                whitespace: true,
-                            },
-                        ]}
-                        style={{width:500}}
-                    >
-                        <Input placeholder="Categorie"
-                               name="category"
-                               className="form-control"
-                               value={this.state.category}
-                               onChange={this.postChange}/>
-                    </Form.Item>
+                    {/*<Form.Item*/}
+                    {/*    name="category"*/}
+                    {/*    label="Categorie"*/}
+                    {/*    rules={[*/}
+                    {/*        {*/}
+                    {/*            required: true,*/}
+                    {/*            message: 'Adauga Categoria',*/}
+                    {/*            whitespace: true,*/}
+                    {/*        },*/}
+                    {/*    ]}*/}
+                    {/*    style={{width:500}}*/}
+                    {/*>*/}
+                    {/*    <Input placeholder="Categorie"*/}
+                    {/*           name="category"*/}
+                    {/*           className="form-control"*/}
+                    {/*           value={this.state.category}*/}
+                    {/*           onChange={this.postChange}/>*/}
+                    {/*</Form.Item>*/}
+
+                <Form.Item
+                    name="category"
+                    label="Categorie"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Adauga Categoria',
+                            whitespace: true,
+                        },
+                    ]}
+                    style={{width:500}}
+                >
+                    <Select
+                        placeholder="Alege categoria"
+                        name = "category"
+                        value={this.state.category} onChange={this.handleChange}>
+                        <Option value="Mobila si interior">Mobila si interior</Option>
+                        <Option value="Haine, incaltaminte, accesorii">Haine, incaltaminte, accesorii</Option>
+                        <Option value="Gadget-uri">Gadget-uri</Option>
+                        <Option value="Sport, sanatate, frumusete">Sport, sanatate, frumusete</Option>
+                        <Option value="Totul pentru copii">Totul pentru copii</Option>
+                        <Option value="Animale de companie">Animale de companie</Option>
+                        <Option value="Plante">Plante</Option>
+                        <Option value="Carti, manuale">Carti, manuale</Option>
+                        <Option value="Totul pentru casa">Totul pentru casa</Option>
+                        <Option value="Instrumente muzicale">Instrumente muzicale</Option>
+                        <Option value="Instrumente, constructie">Instrumente, constructie</Option>
+
+
+                    </Select >
+                </Form.Item>
 
                     <Form.Item
-
                         name="upload"
                         label="Adauga poza"
                         rules={[
@@ -139,18 +177,23 @@ class Announcement extends Component {
                         </Upload>
                     </Form.Item>
 
-                    <Form.Item label="Termeni&Conditii" valuePropName="checked">
+                    <Form.Item label="Termeni&Conditii" valuePropName="checked"
+                               rules={[
+                                   {
+                                       required: true,
+                                   },
+                               ]}>
                         <Switch />
                     </Form.Item>
 
-                    <Form.Item>
-                        <Button type="primary"
-                                htmlType="submit"
-                                onClick={this.submitPost}
-                        >
+                    {/*<Form.Item>*/}
+                        <Button type="submit"
+                                 htmlType="submit"
+                                >
                             Posteaza
                         </Button>
-                    </Form.Item>
+
+                    {/*</Form.Item>*/}
 
                 </Form>
             </>
