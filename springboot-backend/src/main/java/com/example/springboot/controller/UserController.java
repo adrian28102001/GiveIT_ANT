@@ -87,9 +87,17 @@ public class UserController {
         return null;
     }
 
+    //get details of currently logged in user
     @GetMapping("/MyProfile")
     @ResponseBody
-    public User currentUserName(Principal principal) {
+    public User currentUserDetails(Principal principal) {
         return userRepository.findByEmail(principal.getName());
+    }
+
+    //get email of currently logged in user
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Authentication authentication) {
+        return authentication.getName();
     }
 }
