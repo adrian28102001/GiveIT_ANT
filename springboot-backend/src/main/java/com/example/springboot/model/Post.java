@@ -1,6 +1,9 @@
 package com.example.springboot.model;
 
 import javax.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 //JPA annotations to map model to relational database table
 @Entity
@@ -22,6 +25,16 @@ public  class Post {
 
     @Column(name = "photo")
     private String photo;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date created;
+
+    @PrePersist
+    private void onCreate() {
+        created = new Date();
+    }
+
 
     public Long getId() {
         return id;
@@ -62,4 +75,8 @@ public  class Post {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public Date getCreated(){ return created;}
+
+    public Date setCreated(Date created){return this.created  = created;}
 }

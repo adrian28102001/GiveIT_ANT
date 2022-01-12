@@ -58,6 +58,7 @@ public class PostController  {
             post.setDescription(post.getDescription());
             post.setCategory(post.getCategory());
             post.setPhoto(post.getPhoto());
+            post.setCreated(post.getCreated());
 
             Post savedPost = postRepository.saveAndFlush(post);
             jsonObject.put("message", savedPost.getTitle() + " saved succesfully");
