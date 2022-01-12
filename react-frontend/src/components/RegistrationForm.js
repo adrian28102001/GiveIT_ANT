@@ -9,6 +9,7 @@ import {
 } from 'antd';
 import {registerUser} from "../service";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 
 class RegistrationForm extends Component {
@@ -46,7 +47,7 @@ class RegistrationForm extends Component {
         this.resetRegistrationForm();
         setTimeout(() => {
             if (this.props.user.message != null){
-
+                this.props.history.push("/MyProfile");
             }else{
 
             }
@@ -246,4 +247,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RegistrationForm));

@@ -4,7 +4,7 @@ import HeaderApp from "./components/Header";
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route, BrowserRouter
 } from "react-router-dom";
 import chat from "./pages/Chat";
 import Home from "./pages/Home";
@@ -18,7 +18,7 @@ import DetailsPage from "./pages/detailsPage";
 
 const App = () => {
     return (
-        <Router>
+        <BrowserRouter>
             <Layout>
                 <HeaderApp/>
                 <Layout>
@@ -39,7 +39,7 @@ const App = () => {
                 </Layout>
             </Layout>
 
-        </Router>
+        </BrowserRouter>
     );
 }
 

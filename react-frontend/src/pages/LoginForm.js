@@ -3,7 +3,8 @@ import 'antd/dist/antd.css';
 import {connect} from 'react-redux'
 import {Alert, Button, Checkbox, Form, Input} from 'antd';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {authenticateUser} from "../service";
 
 
@@ -24,7 +25,7 @@ class LoginForm extends Component {
         });
     };
 
-    validateUser = () => {
+    validateUser = (props) => {
         let userObject = {
             email: this.state.email,
             password: this.state.password
@@ -32,7 +33,7 @@ class LoginForm extends Component {
         this.props.authenticateUser(userObject);
         setTimeout(() => {
             if (this.props.auth.isLoggedIn) {
-                //return this.props.history.push("/add_announcement");
+                return this.props.history.push("/MyProfile");
             } else {
                 this.resetLoginForm();
                 this.setState({"error": "Invalid email and password"});
@@ -131,4 +132,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginForm));
