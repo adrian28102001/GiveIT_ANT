@@ -90,7 +90,7 @@ public class UserController {
     //get details of currently logged in user
     @GetMapping("/MyProfile")
     @ResponseBody
-    public User currentUserDetails(Principal principal) {
+    public User currentUserDetails(Principal principal) throws NullPointerException {
         return userRepository.findByEmail(principal.getName());
     }
 

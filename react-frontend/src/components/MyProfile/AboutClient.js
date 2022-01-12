@@ -17,6 +17,11 @@ const { Option } = Select;
 
 const AboutClient = () => {
 
+    let user = {};
+    axios.get("http://localhost:8080/user/MyProfile").then(response => (
+        this.setState({user: response.data})
+    ));
+
     return (
         <div>
             <div className="site-card-border-less-wrapper">

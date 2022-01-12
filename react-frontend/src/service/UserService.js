@@ -10,6 +10,10 @@ class UserService{
         return axios.get(USER_API_BASE_URL);
     }
 
+    getLoggedInUser(){
+        return axios.get("http://localhost:8080/user/MyProfile");
+    }
+
     createUser(user){
         return axios.post(USER_API_BASE_URL, user);
     }
