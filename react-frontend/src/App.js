@@ -2,7 +2,6 @@ import React from 'react';
 import './App.less';
 import HeaderApp from "./components/Header";
 import {
-    BrowserRouter as Router,
     Switch,
     Route, BrowserRouter
 } from "react-router-dom";

@@ -4,7 +4,7 @@ import {Row, Col, Image, Badge, Button, Affix, Drawer} from "antd";
 import {MessageOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {connect} from "react-redux";
 import {logoutUser} from "../service";
 import logo from "../assets/logo2.png";
 

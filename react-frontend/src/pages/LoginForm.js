@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux'
-import {Alert, Button, Checkbox, Form, Input} from 'antd';
-import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {Button, Checkbox, Form, Input} from 'antd';
 import {Link, withRouter} from "react-router-dom";
-import {useHistory} from "react-router-dom";
 import {authenticateUser} from "../service";
 
 
