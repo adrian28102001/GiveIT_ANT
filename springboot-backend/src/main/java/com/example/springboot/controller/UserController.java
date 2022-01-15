@@ -5,6 +5,7 @@ import com.example.springboot.model.User;
 import com.example.springboot.repository.AuthorityRepository;
 import com.example.springboot.repository.UserRepository;
 import com.example.springboot.utils.RolesEnum;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -90,8 +91,17 @@ public class UserController {
     //get details of currently logged in user
     @GetMapping("/MyProfile")
     @ResponseBody
-    public User currentUserDetails(Principal principal) throws NullPointerException {
-        return userRepository.findByEmail(principal.getName());
+    public ResponseEntity<User> currentUserDetails(Principal principal){
+        User user = userRepository.findByEmail(principal.getName());
+        return ResponseEntity.ok(user);
+    }
+
+    //get user by id rest api
+    @GetMapping("/MyProfile/{id}")
+    public ResponseEntity<User> getUserId(@PathVariable Long id){
+        User user = userRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("User with id:" + id + " doesn't exist."));
+        return ResponseEntity.ok(user);
     }
 
     //get email of currently logged in user
