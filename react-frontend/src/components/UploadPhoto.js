@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Button, Input, Upload} from "antd";
+import * as url from "url";
 
 
 const UploadPhoto = () => {
@@ -19,8 +20,12 @@ const UploadPhoto = () => {
             .then(resp => resp.json())
             .then(data => {
                 setPhoto(data.url)
+                localStorage.setItem("photo_url", data.url)
+
             })
             .catch(err => console.log(err))
+
+
     }
 
     return (

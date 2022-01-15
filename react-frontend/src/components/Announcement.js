@@ -46,7 +46,7 @@ class Announcement extends Component {
             title:  this.state.title,
             description:  this.state.description,
             category: this.state.category,
-            photo: this.state.photo
+            photo: localStorage.getItem("photo_url")
         }
         axios.post("http://localhost:8080/posts/add-post", post)
             .then(response => {
@@ -66,6 +66,7 @@ class Announcement extends Component {
     handleChange= e =>{
     this.setState({category:e});
 }
+
 
 
     render() {
