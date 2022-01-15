@@ -3,9 +3,13 @@ import CardApp from "../components/CardApp";
 import {Row, Layout} from "antd";
 import axios from "axios";
 import {connect} from "react-redux";
+import authToken from "../utils/authToken";
 
+const Home = () => {
 
-const Home = (props) => {
+    if (localStorage.jwtToken) {
+        authToken(localStorage.jwtToken);
+    }
 
     const [products, setProducts] = useState([]);
 
@@ -23,6 +27,7 @@ const Home = (props) => {
 </>
     );
 }
+
 const mapStateToProps = state => {
     return{
         auth:state.auth
