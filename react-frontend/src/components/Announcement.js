@@ -1,12 +1,14 @@
-import React, { Component } from "react";
+import React, {Component, useState} from "react";
 import axios from 'axios';
 import {Card, Form, Button, Col, Input, Image, Upload, Switch, Select} from "antd";
 import {registerUser, savePost} from "../service";
 import {connect} from "react-redux";
 import {UploadOutlined} from "@ant-design/icons";
 import {Option} from "antd/es/mentions";
+import UploadPhoto from "./UploadPhoto";
 
 const normFile = (e: any) => {
+
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
         return e;
@@ -14,7 +16,10 @@ const normFile = (e: any) => {
     return e && e.fileList;
 };
 
+
 class Announcement extends Component {
+
+
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -26,7 +31,7 @@ class Announcement extends Component {
         id: "",
         description: "",
         category: "Mobila si interior",
-        photo: ""
+        photo: "",
     };
 
 
@@ -61,6 +66,7 @@ class Announcement extends Component {
     handleChange= e =>{
     this.setState({category:e});
 }
+
 
     render() {
         return (
@@ -108,25 +114,6 @@ class Announcement extends Component {
                                value={this.state.description} onChange={this.postChange}/>
                     </Form.Item>
 
-                    {/*<Form.Item*/}
-                    {/*    name="category"*/}
-                    {/*    label="Categorie"*/}
-                    {/*    rules={[*/}
-                    {/*        {*/}
-                    {/*            required: true,*/}
-                    {/*            message: 'Adauga Categoria',*/}
-                    {/*            whitespace: true,*/}
-                    {/*        },*/}
-                    {/*    ]}*/}
-                    {/*    style={{width:500}}*/}
-                    {/*>*/}
-                    {/*    <Input placeholder="Categorie"*/}
-                    {/*           name="category"*/}
-                    {/*           className="form-control"*/}
-                    {/*           value={this.state.category}*/}
-                    {/*           onChange={this.postChange}/>*/}
-                    {/*</Form.Item>*/}
-
                 <Form.Item
                     name="category"
                     label="Categorie"
@@ -160,7 +147,7 @@ class Announcement extends Component {
                 </Form.Item>
 
                     <Form.Item
-                        name="upload"
+                        name="photo"
                         label="Adauga poza"
                         rules={[
                             {
@@ -168,13 +155,9 @@ class Announcement extends Component {
                                 message: 'Incarca poza!',
                                 whitespace: true,
                             },
-                        ]}
-                        valuePropName="fileList"
-                        getValueFromEvent={normFile}
-                    >
-                        <Upload name="logo" action="/upload.do" listType="picture">
-                            <Button icon={<UploadOutlined />}>Apasa pentru a incarca poza</Button>
-                        </Upload>
+                        ]}>
+                        <UploadPhoto/>
+
                     </Form.Item>
 
                     <Form.Item label="Termeni&Conditii" valuePropName="checked"
@@ -186,12 +169,10 @@ class Announcement extends Component {
                         <Switch />
                     </Form.Item>
 
-                    {/*<Form.Item>*/}
                         <Button type="submit"
                                  htmlType="submit"
                                 >
-                            Posteaza
-                        </Button>
+                       Submit </Button>
 
                     {/*</Form.Item>*/}
 
