@@ -13,7 +13,7 @@ const Add_announcement = () => {
                         padding:'25px',
                         color:'#1890ff'
                     }}>
-                        Creeaza  un anunt</h1>
+                        Creaza  un anunt</h1>
                 </Row>
 
                 <Row>

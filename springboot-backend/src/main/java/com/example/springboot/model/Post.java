@@ -68,9 +68,7 @@ public  class Post {
         this.description = description;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
+    public String getPhoto() { return photo;}
 
     public void setPhoto(String photo) {
         this.photo = photo;
