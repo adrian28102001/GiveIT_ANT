@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import UserService from "../service/UserService";
 import {
     Form,
     Input,
-    Select,
     Checkbox,
     Button
 } from 'antd';

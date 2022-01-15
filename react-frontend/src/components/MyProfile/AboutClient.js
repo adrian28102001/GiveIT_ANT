@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {Button, Col, Row, Image, Card, Form, Input, Space, DatePicker, Select, Checkbox} from 'antd';
-import {Descriptions} from 'antd';
-import {UserOutlined} from "@ant-design/icons";
+import React from "react";
+import {Button, Col, Row, Card, Form, Input, Space, DatePicker, Select} from 'antd';
 import Avatar from "antd/es/avatar/avatar";
 import axios from "axios";
-import authToken from "../../utils/authToken";
-import CardApp from "../CardApp";
-import ProfileCard from "./ProfileCard";
+
 
 function onChange(date, dateString) {
     console.log(date, dateString);

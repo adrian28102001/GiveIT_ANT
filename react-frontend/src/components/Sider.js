@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Button, Layout, Menu} from 'antd';
 import {Link} from "react-router-dom";
-import {logoutUser} from "../service";
 import {connect} from "react-redux";
 
 const {Sider} = Layout;

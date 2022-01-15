@@ -1,7 +1,7 @@
 import React, {Component, useState} from "react";
 import axios from 'axios';
-import {Card, Form, Button, Col, Input, Image, Upload, Switch, Select} from "antd";
-import {registerUser, savePost} from "../service";
+import {Form, Button, Input, Upload, Switch, Select} from "antd";
+import {savePost} from "../service";
 import {connect} from "react-redux";
 import {UploadOutlined} from "@ant-design/icons";
 import {Option} from "antd/es/mentions";

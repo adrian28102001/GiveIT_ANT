@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CardApp from "../components/CardApp";
-import {Row, Col, Layout, Alert} from "antd";
+import {Row, Layout} from "antd";
 import axios from "axios";
-import authToken from "../utils/authToken";
 import {connect} from "react-redux";
 
 

@@ -9,6 +9,7 @@ import {
 } from 'antd';
 
 import {UploadOutlined} from "@ant-design/icons";
+import {withRouter} from "react-router-dom";
 
 const normFile = (e: any) => {
     console.log('Upload event:', e);
@@ -96,7 +97,7 @@ const FormCreatingAdd = () => {
                 </Form.Item>
 
                 <Form.Item label=" " colon={false}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" onSubmit={this.props.history.push("/MyProfile")}>
                         Submit
                     </Button>
                 </Form.Item>
@@ -106,4 +107,4 @@ const FormCreatingAdd = () => {
     );
 };
 
-export default FormCreatingAdd
+export default withRouter(FormCreatingAdd)

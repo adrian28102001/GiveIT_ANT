@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, Avatar } from 'antd';
+import { Card } from 'antd';
 import {HeartTwoTone, MessageTwoTone, UserOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 const { Meta } = Card;
