@@ -7,9 +7,8 @@ import authToken from "../utils/authToken";
 
 const Home = () => {
 
-    if (localStorage.jwtToken) {
-        authToken(localStorage.jwtToken);
-    }
+    //authToken(localStorage.jwtToken);
+
 
     const [products, setProducts] = useState([]);
 

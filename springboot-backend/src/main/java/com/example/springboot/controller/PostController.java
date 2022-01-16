@@ -1,27 +1,18 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.controller.interfaces.Resource;
 import com.example.springboot.model.Post;
-import com.example.springboot.model.User;
 import com.example.springboot.repository.PostRepository;
-import com.example.springboot.repository.UserRepository;
-import com.example.springboot.services.serviceInterfaces.IPageService;
 import com.example.springboot.services.serviceInterfaces.IService;
-import com.example.springboot.utils.RolesEnum;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +21,7 @@ import java.util.TreeSet;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/posts")
-public class PostController  {
+public class PostController {
 
     @Autowired
     private IService<Post> postService;
@@ -41,12 +32,12 @@ public class PostController  {
 
 
     @GetMapping("/category")
-    public  ResponseEntity<Set<String>> findAllCategories() {
+    public ResponseEntity<Set<String>> findAllCategories() {
         return new ResponseEntity<>(new TreeSet<>(Arrays.asList("Mobila", "Auto", "Altele")), HttpStatus.OK);
     }
 
     @GetMapping("/residence")
-    public  ResponseEntity<Set<String>> findAllResidencies() {
+    public ResponseEntity<Set<String>> findAllResidencies() {
         return new ResponseEntity<>(new TreeSet<>(Arrays.asList("Chisinau", "Balti", "Comrat", "Transnistria")), HttpStatus.OK);
     }
 
@@ -59,6 +50,13 @@ public class PostController  {
             post.setCategory(post.getCategory());
             post.setPhoto(post.getPhoto());
             post.setCreated(post.getCreated());
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+            String currentUserName = authentication.getName();
+            post.setUserid(currentUserName);
+            System.out.println(currentUserName);
+
 
             Post savedPost = postRepository.saveAndFlush(post);
             jsonObject.put("message", savedPost.getTitle() + " saved succesfully");
@@ -74,7 +72,7 @@ public class PostController  {
     }
 
     @GetMapping
-    public List<Post> findAll(){
+    public List<Post> findAll() {
         return (List<Post>) postService.findAll();
     }
 }

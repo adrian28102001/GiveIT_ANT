@@ -1,8 +1,6 @@
 package com.example.springboot.model;
 
 import javax.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-
 import java.util.Date;
 
 //JPA annotations to map model to relational database table
@@ -30,11 +28,13 @@ public  class Post {
     @Column(nullable = false)
     private Date created;
 
+    @Column(name = "userid")
+    private String userid;
+
     @PrePersist
     private void onCreate() {
         created = new Date();
     }
-
 
     public Long getId() {
         return id;
@@ -77,4 +77,12 @@ public  class Post {
     public Date getCreated(){ return created;}
 
     public Date setCreated(Date created){return this.created  = created;}
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 }

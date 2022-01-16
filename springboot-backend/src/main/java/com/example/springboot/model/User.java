@@ -1,12 +1,6 @@
 package com.example.springboot.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 //JPA annotations to map model to relational database table
 @Entity
@@ -40,9 +34,9 @@ public class User{
     @JoinColumn(name = "authority")
     private Authority authority;
 
-    @OneToMany(targetEntity = Post.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "userid", referencedColumnName = "id")
-    private List<Post> posts;
+//    @OneToMany(targetEntity = Post.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "userid", referencedColumnName = "id")
+//    private List<Post> posts;
 
     public Long getId() {
         return id;

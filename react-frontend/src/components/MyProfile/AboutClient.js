@@ -22,9 +22,11 @@ class AboutClient extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/user/username", {
+        axios.get("http://localhost:8080/user/MyProfile", {
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem("jwtToken")}`
+                'Authorization': `Bearer ${localStorage.getItem("jwtToken")}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             }
         }).then((res) => {
             console.log(res.data)

@@ -4,18 +4,19 @@ import {Row, Col, Image, Badge, Button, Affix, Drawer} from "antd";
 import {MessageOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
-import {connect} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {logoutUser} from "../service";
 import logo from "../assets/logo2.png";
 
 
-class HeaderApp extends Component {
+const HeaderApp  = () => {
 
-    logout = () => {
-        this.props.logoutUser();
+    const auth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch(logoutUser());
     };
-
-    render() {
 
         const guestLinks = (
             <>
@@ -50,7 +51,7 @@ class HeaderApp extends Component {
                 </Col>
 
                 <Col style={{marginLeft :'5px'} }>
-                    <Link exact to={"/"} onClick={this.logout}>
+                    <Link exact to={"/"} onClick={logout}>
                         <Button type="text" style={{color:'#1890ff'}}>
                             Log Out
                         </Button>
@@ -58,6 +59,7 @@ class HeaderApp extends Component {
                 </Col>
             </>
         );
+
         return (
             <div className={'MyHeader'}>
                 <Affix offsetTop={0}>
@@ -75,27 +77,14 @@ class HeaderApp extends Component {
                             <Col>
                                 <Link exact to={'/'}><h1 className={'GiveIt'}>GiveIt</h1></Link>
                             </Col>
-                            {this.props.auth.isLoggedIn ? userLinks : guestLinks}
+                            {auth.isLoggedIn ? userLinks : guestLinks}
                         </Row>
                     </Header>
                 </Affix>
             </div>
 
         );
-    };
 }
 
-const mapStateToProps = state => {
-    return {
-        auth: state.auth
-    }
-};
 
-const mapDispatchToProps = dispatch => {
-    return {
-        logoutUser: () => dispatch(logoutUser())
-        // authenticateUser: (email, password) => dispatch(authenticateUser(email, password))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderApp);
+export default HeaderApp;

@@ -48,7 +48,6 @@ class LoginForm extends Component {
                 this.setState({"error": "Invalid email and password"});
             }
         }, 500);
-        console.log(userObject.email);
     };
 
     resetLoginForm = () => {
