@@ -8,9 +8,8 @@ import {HeartTwoTone, MessageTwoTone} from "@ant-design/icons";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
-class DetailsPage extends Component {
+const DetailsPage = ( {product} ) => {
 
-    render() {
         const addedToFavorite = type => {
             notification[type]({
                 message: 'Adaugat la favorit',
@@ -63,9 +62,10 @@ class DetailsPage extends Component {
                             <Carusel/>
                         </Col>
                         <Col style={{padding: "40px", marginBottom: "15%"}} span={10}>
-                            <Row> <Title>Title goes here</Title> </Row>
+                            <Row> <Title>{product.title}</Title> </Row>
                             <Row>
                                 <Paragraph>
+                                    {product.description}
                                     Description Goes here:
                                     Ant Design, a design language for background applications, is refined by Ant UED
                                     Team.
@@ -97,7 +97,7 @@ class DetailsPage extends Component {
                 </Layout>
             </div>
         );
-    };
+
 }
 
 const mapStateToProps = state => {

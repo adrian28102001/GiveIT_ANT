@@ -1,14 +1,13 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import {Button, Layout, Menu} from 'antd';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {Option} from "antd/es/mentions";
+import {Redirect, Route} from "react-router";
 
 const {Sider} = Layout;
 
-
 class SiderApp extends Component {
-
-
     render() {
         const userLinks = (
             <div style={{padding: '40px 60px'}}>
@@ -27,28 +26,43 @@ class SiderApp extends Component {
             </div>
         );
 
+        const handleClick = e => {
+            localStorage.setItem("menuKey", e.key);
+            window.location.reload();
+            window.location.href = "/";
+            console.log(e.key)
+        };
+
         return (
             <div className={'Sider'}>
                 <Sider className="site-layout-background" width={200}>
 
                     <Menu
+                        onClick={handleClick}
                         mode="inline"
                         style={{
-
                             height: '92vh',
                             position: 'fixed',
                             left: 0,
                             width: '250px',
-
                         }}>
 
                         {this.props.auth.isLoggedIn ? userLinks : guestLinks}
-                        <Menu.Item key="1">Mobila</Menu.Item>
-                        <Menu.Item key="2">Pentru copii</Menu.Item>
-                        <Menu.Item key="3">Tehnica</Menu.Item>
-                        <Menu.Item key="4">Sport</Menu.Item>
+
+                        <Menu.Item key="Mobila si interior">Mobila si interior</Menu.Item>
+                        <Menu.Item key="Haine, incaltaminte, accesorii">Haine, incaltaminte, accesorii</Menu.Item>
+                        <Menu.Item key="Gadget-uri">Gadget-uri</Menu.Item>
+                        <Menu.Item key="Sport, sanatate, frumusete">Sport, sanatate, frumusete</Menu.Item>
+                        <Menu.Item key="Totul pentru copii">Totul pentru copii</Menu.Item>
+                        <Menu.Item key="Animale de companie">Animale de companie</Menu.Item>
+                        <Menu.Item key="Plante">Plante</Menu.Item>
+                        <Menu.Item key="Carti, manuale">Carti, manuale</Menu.Item>
+                        <Menu.Item key="Totul pentru casa">Totul pentru casa</Menu.Item>
+                        <Menu.Item key="Instrumente muzicale">Instrumente muzicale</Menu.Item>
+                        <Menu.Item key="Instrumente, constructie">Instrumente, constructie</Menu.Item>
 
                     </Menu>
+
                 </Sider>
             </div>
         );
