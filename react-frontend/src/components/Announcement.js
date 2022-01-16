@@ -34,7 +34,8 @@ class Announcement extends Component {
         id: "",
         description: "",
         category: "Mobila si interior",
-        photo: ""
+        photo: "",
+        userid: ""
     };
 
     setModalVisible(modalVisible) {
@@ -53,7 +54,8 @@ class Announcement extends Component {
             title:  this.state.title,
             description:  this.state.description,
             category: this.state.category,
-            photo: localStorage.getItem("photo_url")
+            photo: localStorage.getItem("photo_url"),
+            userid: localStorage.getItem("user_email")
         };
         axios.post("http://localhost:8080/posts/add-post", post)
             .then(() => { this.setState(this.initialState)})
