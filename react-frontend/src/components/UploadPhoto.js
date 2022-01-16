@@ -44,7 +44,11 @@ const UploadPhoto = () => {
         <div>
 
             <Row>
-                <Input name={"photo"} type="file" onChange= {(e)=> setImage(e.target.files[0])}></Input>
+                <Input name={"photo"}
+                       accept="image/*"
+                       type="file"
+                       onChange= {(e)=> setImage(e.target.files[0])}>
+                </Input>
             </Row>
             <Row justify={"center"} style={{padding:"3%"}}>
                 <Button type={'primary'} onClick={uploadImage}>Incarca imaginea</Button>
