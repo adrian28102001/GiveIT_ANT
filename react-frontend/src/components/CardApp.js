@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const { Meta } = Card;
 
 const CardApp = ( {product} ) => (
-    <Link to="details/{product.id}">
+    <Link to="details/${id}">
     <div className={'MyCard'}>
         <Card
             hoverable
