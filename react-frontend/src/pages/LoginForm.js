@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux'
-import {Button, Checkbox, Form, Input} from 'antd';
+import {Button, Checkbox, Form, Image, Input, Modal, Row} from 'antd';
 import {Link, withRouter} from "react-router-dom";
 import {authenticateUser} from "../service";
+import logo from "../assets/logo2.png";
+import Title from "antd/es/typography/Title";
+import Text from "antd/es/typography/Text";
 
 
 class LoginForm extends Component {
@@ -13,8 +16,16 @@ class LoginForm extends Component {
     }
 
     initialState = {
-        email: "", password: "", error: ""
+        email: "",
+        password: "",
+        error: "",
+        modalVisible: false
     };
+
+    setModalVisible(modalVisible) {
+        this.setState({ modalVisible });
+    }
+
 
 
     credentialChange = (event) => {
@@ -31,7 +42,7 @@ class LoginForm extends Component {
         this.props.authenticateUser(userObject);
         setTimeout(() => {
             if (this.props.auth.isLoggedIn) {
-                return this.props.history.push("/MyProfile");
+                return this.setModalVisible(true);
             } else {
                 this.resetLoginForm();
                 this.setState({"error": "Invalid email and password"});
@@ -48,6 +59,32 @@ class LoginForm extends Component {
         return (
             <div>
                 {/*{error && <Alert variant={"danger"} message={error}>{error}</Alert>}*/}
+                <Modal
+                    centered
+                    visible={this.state.modalVisible}
+                    footer={[
+                        <Link exact to = {"/"}>
+                            <Button > Pagina Principala </Button>
+                        </Link>,
+                        <Link exact to = {"/add_announcement"}>
+                            <Button type={"primary"} > Creeaza un anunt </Button>
+                        </Link>
+                    ]}
+                >
+                    <Row justify={"center"}>
+                        <p>
+                            <Image width={95} preview={false} style={{padding: '5px 5px'}}
+                                   src={logo}/>
+                        </p>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Title level={2} >Bine ai revenit!</Title>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Text type={"secondary"} >Alegeti unde vreti sa mergeti acum:</Text>
+                    </Row>
+                </Modal>
+
                 <Form
                 >
                     <Form.Item

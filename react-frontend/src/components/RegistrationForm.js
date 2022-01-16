@@ -3,11 +3,15 @@ import {
     Form,
     Input,
     Checkbox,
-    Button
+    Button, Row, Image, Modal
 } from 'antd';
+
 import {registerUser} from "../service";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
+import logo from "../assets/logo2.png";
+import Title from "antd/es/typography/Title";
+import Text from "antd/es/typography/Text";
 
 
 class RegistrationForm extends Component {
@@ -18,12 +22,17 @@ class RegistrationForm extends Component {
     }
 
     initialState = {
+        modalVisible: false,
         firstName: '',
         lastName: '',
         email: '',
         password: '',
         phone: '',
         province: ''
+    }
+
+    setModalVisible(modalVisible) {
+        this.setState({ modalVisible });
     }
 
     userChange = (event) => {
@@ -45,7 +54,7 @@ class RegistrationForm extends Component {
         this.resetRegistrationForm();
         setTimeout(() => {
             if (this.props.user.message != null){
-                this.props.history.push("/MyProfile");
+                this.setModalVisible(true)
             }else{
 
             }
@@ -56,11 +65,38 @@ class RegistrationForm extends Component {
         this.setState(() => this.initialState);
     };
 
-
-
     render() {
         return (
             <>
+                <Modal
+                    centered
+                    visible={this.state.modalVisible}
+                    footer={[
+                        <Link exact to = {"/"}>
+                            <Button > Pagina Principala </Button>
+                        </Link>,
+                        <Link exact to = {"/add_announcement"}>
+                            <Button type={"primary"} > Creeaza un anunt </Button>
+                        </Link>
+                    ]}
+                >
+                    <Row justify={"center"}>
+                        <p>
+                            <Image width={95} preview={false} style={{padding: '5px 5px'}}
+                                   src={logo}/>
+                        </p>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Title level={2} >Profilul a fost creat cu succes!</Title>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Title level={4} > Bine ati venit!</Title>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Text type={"secondary"} >Alegeti unde vreti sa mergeti acum:</Text>
+                    </Row>
+                </Modal>
+
                 <Form
                     labelCol={{
                         span: 10,

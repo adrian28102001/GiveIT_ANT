@@ -1,14 +1,12 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import axios from 'axios';
-import {Form, Button, Input, Upload, Switch, Select, Modal, Image, Row} from "antd";
+import {Form, Button, Input, Switch, Select, Modal, Image, Row, Checkbox} from "antd";
 import {savePost} from "../service";
 import {connect} from "react-redux";
 import {Option} from "antd/es/mentions";
 import UploadPhoto from "./UploadPhoto";
 import logo from "../assets/logo2.png";
-import Text from "antd/es/typography/Text";
 import Title from "antd/es/typography/Title";
-import {Redirect} from "react-router";
 import {Link} from "react-router-dom";
 
 const normFile = (e: any) => {
@@ -184,15 +182,6 @@ class Announcement extends Component {
                         ]}>
                         <UploadPhoto/>
 
-                    </Form.Item>
-
-                    <Form.Item label="Termeni&Conditii" valuePropName="checked"
-                               rules={[
-                                   {
-                                       required: true,
-                                   },
-                               ]}>
-                        <Switch />
                     </Form.Item>
 
                         <Button type="submit"
