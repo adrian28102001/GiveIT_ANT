@@ -1,11 +1,15 @@
 import React, {Component, useState} from "react";
 import axios from 'axios';
-import {Form, Button, Input, Upload, Switch, Select} from "antd";
+import {Form, Button, Input, Upload, Switch, Select, Modal, Image, Row} from "antd";
 import {savePost} from "../service";
 import {connect} from "react-redux";
-import {UploadOutlined} from "@ant-design/icons";
 import {Option} from "antd/es/mentions";
 import UploadPhoto from "./UploadPhoto";
+import logo from "../assets/logo2.png";
+import Text from "antd/es/typography/Text";
+import Title from "antd/es/typography/Title";
+import {Redirect} from "react-router";
+import {Link} from "react-router-dom";
 
 const normFile = (e: any) => {
 
@@ -28,11 +32,16 @@ class Announcement extends Component {
     }
 
     initialState = {
+        modalVisible: false,
         id: "",
         description: "",
         category: "Mobila si interior",
         photo: "",
     };
+
+    setModalVisible(modalVisible) {
+        this.setState({ modalVisible });
+    }
 
 
     resetPost = () => {
@@ -46,15 +55,11 @@ class Announcement extends Component {
             title:  this.state.title,
             description:  this.state.description,
             category: this.state.category,
-            photo: localStorage.getItem("photo_url")
+            photo: localStorage.getItem("photo_url"),
         }
         axios.post("http://localhost:8080/posts/add-post", post)
-            .then(response => {
-                if (response.data != null){
-                    this.setState(this.initialState);
-                    alert("Post saved successfully");
-                }
-            } )
+            .then(() => { this.setState(this.initialState)})
+            .then(() => this.setModalVisible(true))
     };
 
     postChange = event => {
@@ -66,12 +71,29 @@ class Announcement extends Component {
     handleChange= e =>{
     this.setState({category:e});
 }
-
-
-
     render() {
         return (
             <>
+                <Modal
+                    centered
+                    visible={this.state.modalVisible}
+                    footer={[
+                        <Link exact to = {"/"}>
+                        <Button> Ok </Button>
+                        </Link>
+                    ]}
+                >
+                    <Row justify={"center"}>
+                    <p>
+                        <Image width={95} preview={false} style={{padding: '5px 5px'}}
+                              src={logo}/>
+                    </p>
+                    </Row>
+                    <Row justify={"center"}>
+                    <Title level={2} >Anuntul a fost postat cu succes!</Title>
+                    </Row>
+                </Modal>
+
                 <Form
                     labelCol={{
                         span: 10,
@@ -80,7 +102,7 @@ class Announcement extends Component {
                         span: 17,
                     }}
                     style={{width:500}}
-                    // onSubmit={this.submitPost}
+
                     onSubmitCapture={this.submitPost}
                 >
                     <Form.Item
@@ -88,8 +110,10 @@ class Announcement extends Component {
                         label="Titlu"
                         rules={[
                             {
+                                min: 3,
+                                max:30,
                                 required: true,
-                                message: 'Introduceți titlu!',
+                                message: 'Introduceți un titlu mai mare de 3 caractere!',
                                 whitespace: true,
                             },
                         ]}
@@ -104,8 +128,9 @@ class Announcement extends Component {
                         label="Descriere"
                         rules={[
                             {
+                                min:10,
                                 required: true,
-                                message: 'Adauga descrierea',
+                                message: 'Adauga o descriere fiabila! (mai mult de 10 caractere)',
                                 whitespace: true,
                             },
                         ]}
@@ -173,7 +198,7 @@ class Announcement extends Component {
                         <Button type="submit"
                                  htmlType="submit"
                                 >
-                       Submit </Button>
+                       Posteaza anuntul </Button>
 
                     {/*</Form.Item>*/}
 

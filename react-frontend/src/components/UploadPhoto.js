@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
-import {Button, Input, Upload} from "antd";
-import * as url from "url";
+import {Button, Input, Row, message, Image} from "antd";
 
 
 const UploadPhoto = () => {
 
     const [image, setImage] = useState("");
     const [photo, setPhoto] = useState("");
+    const [status, setStatus] = useState("");
+
+    const handleState = () => {
+        if(status === "success")
+            message.success("All good!").then(r => message);
+        else if (status === "error")
+            message.error("Something is wrong").then(r => message);
+        else
+            message.warning('This is a warning message').then(r => message);
+    }
 
     const uploadImage = () => {
         const data = new FormData()
@@ -20,22 +29,31 @@ const UploadPhoto = () => {
             .then(resp => resp.json())
             .then(data => {
                 setPhoto(data.url)
+                message.success("Imaginea a fost incarcata cu success!").then(r => message);
                 localStorage.setItem("photo_url", data.url)
 
             })
-            .catch(err => console.log(err))
-
+            .catch((err) => {
+                console.log(err)
+                message.error("Ups, ceva a mers nu cum trebuie").then(r => message);
+            })
 
     }
 
     return (
         <div>
-            <div>
+
+            <Row>
                 <Input name={"photo"} type="file" onChange= {(e)=> setImage(e.target.files[0])}></Input>
-                <Button type={'primary'} onClick={uploadImage}>Upload</Button>
-                <h1>Uploaded image will be displayed here</h1>
-                <img src={photo}/>
-            </div>
+            </Row>
+            <Row justify={"center"} style={{padding:"3%"}}>
+                <Button type={'primary'} onClick={uploadImage}>Incarca imaginea</Button>
+            </Row>
+            <Row>
+                <h1>Imaginea incarcata va apre aici</h1>
+                <Image width={100} src={photo}/>
+            </Row>
+
             <div>
 
             </div>

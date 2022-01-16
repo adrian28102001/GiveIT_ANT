@@ -5,7 +5,7 @@ import Announcement from "../components/Announcement";
 const Add_announcement = () => {
     return (
         <>
-            <Layout style={{height:'100vh'}}>
+            <Layout style={{height:'150vh'}}>
 
                 <Row>
                     <h1 style={{'font-size':36,
