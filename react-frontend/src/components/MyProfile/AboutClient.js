@@ -19,7 +19,8 @@ class AboutClient extends Component {
 
         this.state = {
             user: {},
-            disabled: true
+            disabled: true,
+            showButton: false
         }
     }
 
@@ -37,12 +38,41 @@ class AboutClient extends Component {
 
     toggleDisabled = () => {
         this.setState({
-            disabled: !this.state.disabled
+            disabled: !this.state.disabled,
+            showButton: !this.state.showButton
         });
     };
 
 
+
+
     render() {
+
+        const displayButton = (
+<Row >
+            <Form.Item style={{marginRight:"50%"}}>
+                <Button  onClick={this.toggleDisabled}  type="primary">
+                    Anuleaza
+                </Button>
+            </Form.Item>
+
+        <Form.Item >
+            <Button  htmlType={"submit"} type="primary">
+                Actualizeaza
+            </Button>
+        </Form.Item>
+</Row>
+
+        );
+
+        const dontDisplayButton = (
+            <Form.Item>
+                <Button onClick={this.toggleDisabled} type="primary">
+                    Actualizati Profilul
+                </Button>
+            </Form.Item>
+
+        );
 
 
         console.log(localStorage.getItem("jwtToken"));
@@ -148,11 +178,8 @@ class AboutClient extends Component {
                                     </Form.Item>
 
 
-                                    <Form.Item>
-                                        <Button onClick={this.toggleDisabled} type="primary">
-                                            Update
-                                        </Button>
-                                    </Form.Item>
+                                    {this.state.showButton ? displayButton : dontDisplayButton }
+
                                 </Form>
                             </Col>
                         </Row>
