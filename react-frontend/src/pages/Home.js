@@ -4,6 +4,8 @@ import {Row, Layout} from "antd";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import authToken from "../utils/authToken";
+import Filter from "./Filter";
+import Title from "antd/es/typography/Title";
 
 const Home = () => {
 
@@ -22,13 +24,17 @@ const Home = () => {
     }, [])
 
     return(
-<>
+        <>
             <Layout>
+                <Filter/>
+                <Row justify={"center"} style={{padding:"3%"}}>
+                    <Title level={4}>Toate produsele:</Title>
+                </Row>
                 <Row style={{padding:'50px', marginLeft:100}}>
                     {products.map((p) => <CardApp product={p}/>)}
                 </Row>
             </Layout>
-</>
+        </>
     );
 }
 
