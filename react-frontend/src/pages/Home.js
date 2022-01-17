@@ -2,12 +2,17 @@ import React, {useEffect, useState} from 'react';
 import CardApp from "../components/CardApp";
 import {Row, Layout} from "antd";
 import axios from "axios";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 import authToken from "../utils/authToken";
 
 const Home = () => {
 
     //authToken(localStorage.jwtToken);
+    if (localStorage.jwtToken) {
+        authToken(localStorage.jwtToken);
+    }
+
+    const auth = useSelector((state) => state.auth);
 
 
     const [products, setProducts] = useState([]);
@@ -27,10 +32,5 @@ const Home = () => {
     );
 }
 
-const mapStateToProps = state => {
-    return{
-        auth:state.auth
-    }
-};
 
-export default connect(mapStateToProps)(Home);
+export default Home;

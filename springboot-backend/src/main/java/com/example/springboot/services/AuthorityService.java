@@ -1,7 +1,6 @@
 package com.example.springboot.services;
 
 import com.example.springboot.model.Authority;
-import com.example.springboot.model.Post;
 import com.example.springboot.repository.AuthorityRepository;
 import com.example.springboot.services.serviceInterfaces.IRoleService;
 import org.codehaus.jettison.json.JSONException;

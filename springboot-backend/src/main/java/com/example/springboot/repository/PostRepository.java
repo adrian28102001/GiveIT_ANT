@@ -1,6 +1,5 @@
 package com.example.springboot.repository;
 
-import com.example.springboot.model.Authority;
 import com.example.springboot.model.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
