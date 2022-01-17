@@ -77,7 +77,7 @@ const HeaderApp  = () => {
                             <Col>
                                 <Link exact to={'/'}><h1 className={'GiveIt'}>GiveIt</h1></Link>
                             </Col>
-                            {/*{auth.isLoggedIn ? userLinks : guestLinks}*/}
+                            {auth.isLoggedIn ? userLinks : guestLinks}
                         </Row>
                     </Header>
                 </Affix>
