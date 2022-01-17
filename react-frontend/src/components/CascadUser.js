@@ -6,13 +6,13 @@ const CascadUser = () => {
     const menu = (
         <Menu>
             <Menu.Item>
-                1st menu item
+               My profile
             </Menu.Item>
             <Menu.Item>
-                2nd menu item
+                Favorite items
             </Menu.Item>
             <Menu.Item>
-                3rd menu item
+                My posts
             </Menu.Item>
         </Menu>
     );

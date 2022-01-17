@@ -1,6 +1,6 @@
 import * as PT from "./postTypes";
 import axios from "axios";
-import {POST_CATEGORIES} from "./postTypes";
+
 
 export const savePost = (post) => {
     return (dispatch) => {
