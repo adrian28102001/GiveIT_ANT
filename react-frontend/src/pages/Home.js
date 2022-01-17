@@ -6,8 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 import authToken from "../utils/authToken";
 import Filter from "./Filter";
 import Title from "antd/es/typography/Title";
-import store from "../service/store";
-import authReducer from "../service/user/authentication/authReducer";
 import {logoutUser} from "../service";
 
 const Home = () => {
