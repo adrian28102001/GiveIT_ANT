@@ -1,111 +1,115 @@
-import React, {Component} from "react";
-import {Button, Col, Layout, notification, Row} from "antd";
-import Carusel from "../components/ProductDetailsComponents/carousel";
+import React from "react";
+import {Button, Col, notification, Row} from "antd";
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
 import Paragraph from "antd/es/typography/Paragraph";
 import {HeartTwoTone, MessageTwoTone} from "@ant-design/icons";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import useFetch from "../components/useFetch";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
-const DetailsPage = ( {product} ) => {
+const DetailsPage = () => {
 
-        const addedToFavorite = type => {
-            notification[type]({
-                message: 'Adaugat la favorit',
-                description:
-                    'Postarea a fost adaugata cu succes in lista de produse favorite!',
-                duration: 3.5
-            });
-        };
+    const {id} = useParams();
 
-        const userLinks = (
-            <Row justify="space-around" style={{marginTop: '3%', marginBottom: '3%'}}>
+    const {data, error, isPending} = useFetch(`http://localhost:8080/posts/posts/${id}`);
+
+    const addedToFavorite = type => {
+        notification[type]({
+            message: 'Adaugat la favorit',
+            description:
+                'Postarea a fost adaugata cu succes in lista de produse favorite!',
+            duration: 3.5
+        });
+    };
+
+    const userLinks = (
+        <Row justify="space-around" style={{marginTop: '3%', marginBottom: '3%'}}>
+            <Col>
+                <Button onClick={() => addedToFavorite('success')}>
+                    <HeartTwoTone key="fav" twoToneColor="#eb2f96"/>
+                    Add to Favorite
+                </Button>
+            </Col>
+            <Col>
+                <Button><MessageTwoTone key="mess" twoToneColor="#1890ff"/>Chat with owner</Button>
+            </Col>
+        </Row>
+    );
+
+    const guestLinks = (
+        <div style={{marginTop: '3%', marginBottom: '3%'}}>
+            <Col>
+                <Text type="secondary">Conecteaza-te sau Inregistraza-te pentru a contacta autorul anuntului:</Text>
+            </Col>
+            <Row justify="space-around" style={{marginTop: '1%'}}>
                 <Col>
-                    <Button onClick={() => addedToFavorite('success')}>
-                        <HeartTwoTone key="fav" twoToneColor="#eb2f96"/>
-                        Add to Favorite
-                    </Button>
+                    <Link exact to={"/login"}>
+                        <Button type="link">Conecteaza-te</Button>
+                    </Link>
                 </Col>
                 <Col>
-                    <Button><MessageTwoTone key="mess" twoToneColor="#1890ff"/>Chat with owner</Button>
+                    <Link exact to={"/register"}>
+                        <Button type="link">Inregistreaza-te</Button>
+                    </Link>
                 </Col>
             </Row>
-        );
 
-        const guestLinks = (
-            <div style={{marginTop: '3%', marginBottom: '3%'}}>
-                <Col>
-                    <Text type="secondary">Conecteaza-te sau Inregistraza-te pentru a contacta autorul anuntului:</Text>
-                </Col>
-                <Row justify="space-around" style={{marginTop: '1%'}}>
-                    <Col>
-                        <Link exact to={"/login"}>
-                            <Button type="link">Conecteaza-te</Button>
-                        </Link>
+        </div>
+    );
+
+    return (
+        <div>
+            {isPending && <div>Loading...
+                </div>
+                }
+                {error && <div>{error}</div>}
+
+                {data &&
+                <Row justify="space-around" align="middle">
+                    <Col span={10} style={{padding: "40px"}}>
+                        <div>
+                            <Carousel>
+                                <div>
+                                    <img alt="" src={data.photo}/>
+                                </div>
+                            </Carousel>
+                        </div>
+
                     </Col>
-                    <Col>
-                        <Link exact to={"/register"}>
-                            <Button type="link">Inregistreaza-te</Button>
-                        </Link>
+                    <Col style={{padding: "40px", marginBottom: "15%"}} span={10}>
+                        <Row> <Title>{data.title}</Title> </Row>
+                        <Row>
+                            <Paragraph>
+                                {data.description}
+                            </Paragraph>
+                        </Row>
+
+
+                        <Row justify="end">
+                            <Text type="secondary">Owner Name, {data.userid}</Text>
+                        </Row>
+                        <Row justify="end">
+                            <Text type="secondary">{data.created}</Text>
+                        </Row>
+
                     </Col>
                 </Row>
+                }
+
 
             </div>
-        );
+                );
 
-        return (
-            <div>
-                <Layout style={{height: "100vh"}}>
-                    <Row justify="space-around" align="middle">
-                        <Col span={10} style={{padding: "40px"}}>
-                            <Carusel/>
-                        </Col>
-                        <Col style={{padding: "40px", marginBottom: "15%"}} span={10}>
-                            <Row> <Title>{product.title}</Title> </Row>
-                            <Row>
-                                <Paragraph>
-                                    {product.description}
-                                    Description Goes here:
-                                    Ant Design, a design language for background applications, is refined by Ant UED
-                                    Team.
-                                    Ant
-                                    Design, a design language for background applications, is refined by Ant UED Team.
-                                    Ant
-                                    Design, a design language for background applications, is refined by Ant UED Team.
-                                    Ant
-                                    Design, a design language for background applications, is refined by Ant UED Team.
-                                    Ant
-                                    Design, a design language for background applications, is refined by Ant UED Team.
-                                    Ant
-                                    Design, a design language for background applications, is refined by Ant UED Team.
-                                </Paragraph>
-                            </Row>
+            }
 
-                            {this.props.auth.isLoggedIn ? userLinks : guestLinks}
-
-                            <Row justify="end">
-                                <Text type="secondary">Owner Name, owner.email@gmail.com</Text>
-                            </Row>
-                            <Row justify="end">
-                                <Text type="secondary">2022-01-12 18:56</Text>
-                            </Row>
-
-                        </Col>
-                    </Row>
-
-                </Layout>
-            </div>
-        );
-
-}
-
-const mapStateToProps = state => {
-    return {
-        auth: state.auth
-    }
-};
+            const mapStateToProps = state => {
+            return {
+            auth: state.auth
+        }
+        };
 
 
-export default connect(mapStateToProps)(DetailsPage);
+            export default DetailsPage;
 

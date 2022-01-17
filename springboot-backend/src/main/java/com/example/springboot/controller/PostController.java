@@ -1,8 +1,10 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.model.Post;
+import com.example.springboot.model.User;
 import com.example.springboot.repository.PostRepository;
 import com.example.springboot.services.serviceInterfaces.IService;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -67,4 +66,10 @@ public class PostController {
     public List<Post> findAll() {
         return (List<Post>) postService.findAll();
     }
+
+    @GetMapping("/posts/{id}")
+    public Optional<Post> findById(@PathVariable Long id){
+        return postRepository.findById(id);
+    }
+
 }

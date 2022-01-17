@@ -29,9 +29,8 @@ const App = () => {
                     <Route path="/register"  component={Register}/>
                     <Route path="/MyProfile"  component={MyProfile}/>
                     <Route path="/login"  component={LoginPage}/>
-                    <Route path="/details/${id}"  component={DetailsPage}/>
+                    <Route path="/posts/:id"  component={DetailsPage}/>
 
-                    {/*<Route path="/logout  component={}/>*/}
 
 
                 </Switch>
