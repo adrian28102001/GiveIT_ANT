@@ -1,18 +1,19 @@
 import React from "react";
-import {Button, Col, notification, Row} from "antd";
+import {Button, Col, Layout, notification, Row, Spin} from "antd";
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
 import Paragraph from "antd/es/typography/Paragraph";
-import {HeartTwoTone, MessageTwoTone} from "@ant-design/icons";
+import {HeartTwoTone, LoadingOutlined, MessageTwoTone} from "@ant-design/icons";
 import {Link, useParams} from "react-router-dom";
 import useFetch from "../components/useFetch";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import {Carousel} from 'react-responsive-carousel';
+import {useSelector} from "react-redux";
 
 const DetailsPage = () => {
 
+    const auth = useSelector((state) => state.auth);
     const {id} = useParams();
-
     const {data, error, isPending} = useFetch(`http://localhost:8080/posts/posts/${id}`);
 
     const addedToFavorite = type => {
@@ -61,55 +62,56 @@ const DetailsPage = () => {
 
     return (
         <div>
-            {isPending && <div>Loading...
-                </div>
-                }
-                {error && <div>{error}</div>}
-
-                {data &&
-                <Row justify="space-around" align="middle">
-                    <Col span={10} style={{padding: "40px"}}>
-                        <div>
-                            <Carousel>
-                                <div>
-                                    <img alt="" src={data.photo}/>
-                                </div>
-                            </Carousel>
-                        </div>
-
-                    </Col>
-                    <Col style={{padding: "40px", marginBottom: "15%"}} span={10}>
-                        <Row> <Title>{data.title}</Title> </Row>
-                        <Row>
-                            <Paragraph>
-                                {data.description}
-                            </Paragraph>
-                        </Row>
-
-
-                        <Row justify="end">
-                            <Text type="secondary">Owner Name, {data.userid}</Text>
-                        </Row>
-                        <Row justify="end">
-                            <Text type="secondary">{data.created}</Text>
-                        </Row>
-
+            {isPending &&
+                <Row justify="center" style={{height: "100vh"}}>
+                    <Col offset={20} span={3} style={{padding: "40px"}}>
+                        <div align={"center"}><Spin style={{width:"50vh"}} tip={"loading"}/></div>
                     </Col>
                 </Row>
-                }
+            }
+            {error && <div>{error}</div>}
+
+            {data &&
+            <Row justify="space-around" align="middle">
+                <Col span={10} style={{padding: "40px"}}>
+                    <div>
+                        <Carousel>
+                            <div>
+                                <img alt="" src={data.photo}/>
+                            </div>
+                        </Carousel>
+                    </div>
+
+                </Col>
+                <Col style={{padding: "40px", marginBottom: "15%"}} span={10}>
+                    <Row> <Title>{data.title}</Title> </Row>
+                    <Row>
+                        <Paragraph>
+                            {data.description}
+                        </Paragraph>
+                    </Row>
+
+                    {auth.isLoggedIn ? userLinks : guestLinks}
 
 
-            </div>
-                );
+                    <Row justify="end">
+                        <Text type="secondary">Owner Name, {data.userid}</Text>
+                    </Row>
+                    <Row justify="end">
+                        <Text type="secondary">{data.created}</Text>
+                    </Row>
 
+                </Col>
+            </Row>
             }
 
-            const mapStateToProps = state => {
-            return {
-            auth: state.auth
-        }
-        };
+
+        </div>
+    );
+
+}
 
 
-            export default DetailsPage;
+
+export default DetailsPage;
 
