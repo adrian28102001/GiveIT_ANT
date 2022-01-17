@@ -22,13 +22,9 @@ class AboutClient extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/user/MyProfile", {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("jwtToken")}`,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }).then((res) => {
+        axios.get("http://localhost:8080/user/MyProfile"
+        ).then((res) => {
+            this.setState({user: res.data})
             console.log(res.data)
         }).catch((error) => {
             console.log(error.response)
@@ -43,6 +39,7 @@ class AboutClient extends Component {
             <div>
                 <div className="site-card-border-less-wrapper">
                     <Card title="MyProfile" bordered={false}>
+                        <h1>hello {this.state.user.email}</h1>
                         {/* <h1> [[${this.#request.userPrinciple.principal.username}]]</h1>*/}
                         <Row>
                             <Col span={5}>
