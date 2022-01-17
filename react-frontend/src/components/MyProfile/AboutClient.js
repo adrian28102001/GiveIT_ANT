@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import {Button, Col, Row, Card, Form, Input, Space, DatePicker, Select} from 'antd';
 import Avatar from "antd/es/avatar/avatar";
 import axios from "axios";
@@ -11,13 +11,15 @@ function onChange(date, dateString) {
 const { Option } = Select;
 
 
+
 class AboutClient extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            user: {}
+            user: {},
+            disabled: true
         }
     }
 
@@ -31,7 +33,17 @@ class AboutClient extends Component {
         });
     }
 
+
+
+    toggleDisabled = () => {
+        this.setState({
+            disabled: !this.state.disabled
+        });
+    };
+
+
     render() {
+
 
         console.log(localStorage.getItem("jwtToken"));
         return (
@@ -69,34 +81,37 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input disabled={true}/>
-                                    </Form.Item>
-
-                                    <Form.Item name="age"
-                                               label="Data Nasterii"
-                                               rules={[
-                                                   {
-                                                       required: true,
-                                                       message: 'Introduceți data nașterii!',
-                                                   },
-                                               ]}>
-                                        <Space direction="vertical">
-                                            <DatePicker onChange={onChange}/>
-                                        </Space>
+                                        <Input placeholder={this.state.user.email} disabled={this.state.disabled}/>
                                     </Form.Item>
 
                                     <Form.Item
-                                        name="nickname"
-                                        label="Nickname"
+                                        name="name"
+                                        label="Prenume"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Introduceți nickname-ul!',
+                                                message: 'Introduceți prenumele!',
                                                 whitespace: true,
                                             },
                                         ]}
                                     >
-                                        <Input/>
+                                        <Input  placeholder={this.state.user.firstName} disabled={this.state.disabled}/>
+                                    </Form.Item>
+
+
+
+                                    <Form.Item
+                                        name="surname"
+                                        label="Nume"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Introduceți numele!',
+                                                whitespace: true,
+                                            },
+                                        ]}
+                                    >
+                                        <Input placeholder={this.state.user.lastName} disabled={this.state.disabled}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -109,7 +124,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input/>
+                                        <Input placeholder={this.state.user.province} disabled={this.state.disabled}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -127,12 +142,14 @@ class AboutClient extends Component {
 
                                         <Input type={'number'}
                                                prefix="+373"
+                                               disabled={this.state.disabled}
+                                               placeholder={this.state.user.phone}
                                         />
                                     </Form.Item>
 
 
                                     <Form.Item>
-                                        <Button type="primary" htmlType="submit">
+                                        <Button onClick={this.toggleDisabled} type="primary">
                                             Update
                                         </Button>
                                     </Form.Item>
@@ -145,5 +162,7 @@ class AboutClient extends Component {
 
         );
     }
+
+
 }
 export default AboutClient;
