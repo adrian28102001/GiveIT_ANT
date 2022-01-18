@@ -87,10 +87,10 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 
         if (postService.findAll().isEmpty()) {
             Post post1 = new Post();
-            post1.setTitle("Flori de camera");
-            post1.setDescription("Flori de camera s simply dummy text of the h the release of Letraset sheets containi");
-            post1.setCategory("Books");
-            post1.setPhoto("https://i.ibb.co/vYdFjpH/1459347963-bust.jpg");
+            post1.setTitle("Caine");
+            post1.setDescription("Caine dragut, are 3 luni. Nu hamaie, e cuminte!");
+            post1.setCategory("Animale de companie");
+            post1.setPhoto("https://i.ibb.co/1Zjz7xT/photo-2022-01-19-01-29-58.jpg");
             post1.setUserid("george@admin.com");
             postService.saveOrUpdate(post1);
 
@@ -161,10 +161,10 @@ public class SpringbootBackendApplication implements CommandLineRunner {
             postService.saveOrUpdate(post9);
 
             Post post10 = new Post();
-            post10.setTitle("Pisicuta");
-            post10.setDescription("Pisicuta blablalbalalblalabllablalb");
+            post10.setTitle("Caine cocker spaniel");
+            post10.setDescription("Caine dragut, nu musca. Cuminte. Are 3 luni.");
             post10.setCategory("Animale de companie");
-            post10.setPhoto("https://i.ibb.co/dtD1MdD/photo-1555685812-4b943f1cb0eb.jpg");
+            post10.setPhoto("https://i.ibb.co/KqrzcK2/photo-2022-01-19-01-57-00.jpg");
             post10.setUserid("valentina@admin.com");
             postService.saveOrUpdate(post10);
 
@@ -201,7 +201,7 @@ public class SpringbootBackendApplication implements CommandLineRunner {
             postService.saveOrUpdate(post14);
 
             Post post15 = new Post();
-            post15.setTitle("Porc");
+            post15.setTitle("PorcUsor");
             post15.setDescription("Porcusor tare frumos ");
             post15.setCategory("Animale de companie");
             post15.setPhoto("https://i.ibb.co/552MxSR/photo-2022-01-19-01-06-48.jpg");
