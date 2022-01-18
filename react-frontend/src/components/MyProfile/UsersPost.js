@@ -7,6 +7,7 @@ import SmallerCardApp from "../smallerCardApp";
 import Row from "antd/es/descriptions/Row";
 
 
+
 const UsersPost  = () => {
 
     const [products, setProducts] = useState([]);
@@ -22,13 +23,32 @@ const UsersPost  = () => {
         axios.get("http://localhost:8080/user/MyProfile").then(({data}) => setUser(data))
     }, [])
 
+    //Delete post:
+    const deleteHandler =  (id, event) => {
+        axios.delete(`http://localhost:8080/posts/${id}`) .then(res => {
+            const products2 = products.filter(item => item.id !== id);
+            setProducts( products2 );
+        });
+    }
 
         return (
             <>
                 <div className="site-card-border-less-wrapper">
                     <Card title="Postarile mele" bordered={false} style={{overflow:'auto', height:'700px'}}>
                 { products.filter((products) => user.email == products.userid)
-                        .map((p) => <SmallerCardApp product={p}/>  ) }
+                    .map((p) =>
+                        <>
+                            <SmallerCardApp product={p}/>
+                            <div>
+                                <Button onClick={(e) => deleteHandler(p.id, e)} type="primary" danger style={{margin: '10px', marginLeft:"15px"}}>
+                                    Delete
+                                </Button>
+                                <Button type="primary"  style={{margin: '10px', marginLeft:"25px"}}>
+                                    View
+                                </Button>
+                            </div>
+                        </>)
+                }
                     </Card>
                 </div>
 
