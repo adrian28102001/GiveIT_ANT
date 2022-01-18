@@ -36,12 +36,6 @@ const Home = () => {
         <>
             <Layout>
                 <Filter/>
-                <Row justify={"center"} style={{padding: "3%"}}>
-                    <Title level={4}>Toate produsele:</Title>
-                </Row>
-                <Row style={{padding: '50px', marginLeft: 100}}>
-                    {products.map((p) => <CardApp product={p}/>)}
-                </Row>
             </Layout>
         </>
     );

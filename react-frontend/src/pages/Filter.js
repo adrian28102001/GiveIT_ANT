@@ -1,5 +1,5 @@
 import CardApp from "../components/CardApp";
-import {Empty, Row} from "antd";
+import {Empty, Row, Space} from "antd";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Title from "antd/es/typography/Title";
@@ -16,12 +16,27 @@ const Filter = () => {
     const menuKey = localStorage.getItem("menuKey");
 
     const noProduct = (
-        <>
+        <Space align={"center"} style={{height:"78vh"}}>
             <Row justify={"center"}>
                 <Empty/>
             </Row>
             <Row justify={"center"}>
                 <Text type={"secondary"}>Nu sunt produse in categoria: {menuKey}</Text>
+            </Row>
+        </Space>
+
+    )
+
+    const allProduct = (
+        <>
+            <Row style={{padding: '50px', marginLeft: 100}}>
+            {
+                menuKey == "tot"
+                    ?
+                    products.map((p) => <CardApp product={p}/>)
+                    :
+                    noProduct
+            }
             </Row>
         </>
     );
@@ -33,8 +48,8 @@ const Filter = () => {
             </Row>
             <Row style={{padding: '50px', marginLeft: 100}}>
                 {
-                    products.filter((products) => products.category == menuKey)
-                        .map((p) => <CardApp product={p}/>)
+                        products.filter((products) => products.category == menuKey)
+                            .map((p) => <CardApp product={p}/>)
                 }
             </Row>
         </>
@@ -45,8 +60,8 @@ const Filter = () => {
 
             {
                 products.filter((products) => products.category === localStorage.getItem("menuKey")).length === 0
-                ?
-                noProduct : yesProduct
+                    ?
+                    allProduct : yesProduct
             }
 
         </>
