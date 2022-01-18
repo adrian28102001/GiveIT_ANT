@@ -175,13 +175,7 @@ class Announcement extends Component {
                     <Form.Item
                         name="photo"
                         label="Adauga poza"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Incarca poza!',
-                                whitespace: true,
-                            },
-                        ]}>
+                        >
                         <UploadPhoto/>
 
                     </Form.Item>

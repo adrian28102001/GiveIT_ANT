@@ -38,17 +38,10 @@ const HeaderApp  = () => {
 
         const userLinks = (
             <>
-                <Col offset={16}>
-                    <Badge size="small" count={5}>
-                        <Link exact to="/chat"><Button size="large" type="default" shape="circle">
-                            <MessageOutlined/>
-                        </Button></Link>
-                    </Badge>
-                </Col>
-
-                <Col style={{marginLeft: '5px'}}>
+                <Col offset={17}>
                     <Link exact to="/MyProfile"><CascadUser/></Link>
                 </Col>
+
 
                 <Col style={{marginLeft :'5px'} }>
                     <Link exact to={"/"} onClick={logout}>

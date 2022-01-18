@@ -40,11 +40,10 @@ const UsersPost  = () => {
                         <>
                             <SmallerCardApp product={p}/>
                             <div>
-                                <Button onClick={(e) => deleteHandler(p.id, e)} type="primary" danger style={{margin: '10px', marginLeft:"15px"}}>
+                                <Button onClick={(e) => deleteHandler(p.id, e)}
+                                        type="primary" danger
+                                        style={{margin: '10px', marginLeft:"7%"}}>
                                     Delete
-                                </Button>
-                                <Button type="primary"  style={{margin: '10px', marginLeft:"25px"}}>
-                                    View
                                 </Button>
                             </div>
                         </>)
