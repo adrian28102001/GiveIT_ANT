@@ -50,6 +50,7 @@ public class UserController {
         try {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             user.setAuthority(authorityRepository.findByName(RolesEnum.USER.toString()));
+            user.setProvince(user.getProvince());
             User savedUser = userRepository.saveAndFlush(user);
             jsonObject.put("message", savedUser.getEmail() + " saved succesfully");
             return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
@@ -109,5 +110,19 @@ public class UserController {
     @ResponseBody
     public String currentUserName(Authentication authentication) {
         return authentication.getName();
+    }
+
+    @PutMapping("/MyProfile")
+    public ResponseEntity<User> updateUser(Principal principal, @RequestBody User userDetails){
+        User user = userRepository.findByEmail(principal.getName());
+
+        user.setFirstName(userDetails.getFirstName());
+        user.setLastName(userDetails.getLastName());
+        user.setPassword(new BCryptPasswordEncoder().encode(userDetails.getPassword()));
+        user.setPhone(userDetails.getPhone());
+        user.setProvince(userDetails.getProvince());
+
+        User updatedUser = userRepository.save(user);
+        return ResponseEntity.ok(updatedUser);
     }
 }

@@ -2,6 +2,8 @@ import React, {Component, useState} from "react";
 import {Button, Col, Row, Card, Form, Input, Space, DatePicker, Select} from 'antd';
 import Avatar from "antd/es/avatar/avatar";
 import axios from "axios";
+import UserService from "../../service/UserService";
+import {withRouter} from "react-router-dom";
 
 
 function onChange(date, dateString) {
@@ -18,7 +20,12 @@ class AboutClient extends Component {
         super(props);
 
         this.state = {
-            user: {},
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            phone: '',
+            province: '',
             disabled: true,
             showButton: false
         }
@@ -27,14 +34,63 @@ class AboutClient extends Component {
     componentDidMount() {
         axios.get("http://localhost:8080/user/MyProfile"
         ).then((res) => {
-            this.setState({user: res.data})
-            console.log(res.data)
+            let user = res.data;
+            this.setState({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                password: user.password,
+                phone: user.phone,
+                province: user.province
+            })
+            console.log('user => ' + JSON.stringify(user))
         }).catch((error) => {
             console.log(error.response)
         });
     }
 
+    updateUser = (event) => {
+        event.preventDefault();
 
+        let user = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+            phone: this.state.phone,
+            province: this.state.province
+        };
+        console.log('user => ' + JSON.stringify(user));
+
+        UserService.updateUser(user, this.state.id).then( res => {
+            this.props.history.push('/MyProfile');
+        });
+    }
+
+    //Assign the new values to user
+    changeFirstNameHandler= (event) => {
+        this.setState({firstName: event.target.value});
+    }
+
+    changeLastNameHandler= (event) => {
+        this.setState({lastName: event.target.value});
+    }
+
+    changePhoneHandler= (event) => {
+        this.setState({phone: event.target.value});
+    }
+
+    changeProvinceHandler= (event) => {
+        this.setState({province: event.target.value});
+    }
+
+    changeEmailHandler= (event) => {
+        this.setState({email: event.target.value});
+    }
+
+    changePasswordHandler= (event) => {
+        this.setState({password: event.target.value});
+    }
 
     toggleDisabled = () => {
         this.setState({
@@ -51,13 +107,13 @@ class AboutClient extends Component {
         const displayButton = (
 <Row >
             <Form.Item style={{marginRight:"50%"}}>
-                <Button  onClick={this.toggleDisabled}  type="primary">
+                <Button type="primary">
                     Anuleaza
                 </Button>
             </Form.Item>
 
         <Form.Item >
-            <Button  htmlType={"submit"} type="primary">
+            <Button onClick={this.updateUser} htmlType={"submit"} type="primary">
                 Actualizeaza
             </Button>
         </Form.Item>
@@ -81,7 +137,7 @@ class AboutClient extends Component {
             <div>
                 <div className="site-card-border-less-wrapper">
                     <Card title="MyProfile" bordered={false}>
-                        <h1>hello {this.state.user.email}</h1>
+                        <h1>hello {this.state.email}</h1>
                         {/* <h1> [[${this.#request.userPrinciple.principal.username}]]</h1>*/}
                         <Row>
                             <Col span={5}>
@@ -111,7 +167,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input placeholder={this.state.user.email} disabled={this.state.disabled}/>
+                                        <Input value={this.state.email} placeholder={this.state.email} disabled={this.state.disabled}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -125,7 +181,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input  placeholder={this.state.user.firstName} disabled={this.state.disabled}/>
+                                        <Input value={this.state.firstName} placeholder={this.state.firstName} onChange={this.changeFirstNameHandler}/>
                                     </Form.Item>
 
 
@@ -141,7 +197,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input placeholder={this.state.user.lastName} disabled={this.state.disabled}/>
+                                        <Input value={this.state.lastName} placeholder={this.state.lastName} onChange={this.changeLastNameHandler}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -154,7 +210,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input placeholder={this.state.user.province} disabled={this.state.disabled}/>
+                                        <Input value={this.state.province} placeholder={this.state.province} onChange={this.changeProvinceHandler}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -172,8 +228,9 @@ class AboutClient extends Component {
 
                                         <Input type={'number'}
                                                prefix="+373"
-                                               disabled={this.state.disabled}
-                                               placeholder={this.state.user.phone}
+                                               value={this.state.phone}
+                                               placeholder={this.state.phone}
+                                               onChange={this.changePhoneHandler}
                                         />
                                     </Form.Item>
 
@@ -192,4 +249,4 @@ class AboutClient extends Component {
 
 
 }
-export default AboutClient;
+export default withRouter(AboutClient);
