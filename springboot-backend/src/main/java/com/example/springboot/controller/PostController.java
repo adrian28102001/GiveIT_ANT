@@ -72,4 +72,16 @@ public class PostController {
         return postRepository.findById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteById( @PathVariable Long id) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            postRepository.deleteById(id);
+            jsonObject.put("message", "Post deleted successfully");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
 }

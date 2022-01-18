@@ -1,7 +1,10 @@
 package com.example.springboot.services.serviceInterfaces;
 
+import com.example.springboot.model.Post;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
+
 
 public interface IService<T> {
     Collection<T> findAll();
@@ -11,4 +14,8 @@ public interface IService<T> {
     T saveOrUpdate(T t);
 
     String deleteById(Long id);
+
+
+
+
 }
