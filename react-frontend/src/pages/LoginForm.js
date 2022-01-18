@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux'
-import {Button, Checkbox, Col, Form, Image, Input, Modal, Row} from 'antd';
+import {Alert, Button, Checkbox, Col, Form, Image, Input, Modal, Row} from 'antd';
 import {Link, withRouter} from "react-router-dom";
 import {authenticateUser} from "../service";
 import logo from "../assets/logo2.png";
@@ -21,6 +21,7 @@ class LoginForm extends Component {
         email: "",
         password: "",
         error: "",
+        showError: false,
         modalVisible: false
     };
 
@@ -46,6 +47,7 @@ class LoginForm extends Component {
                 return this.setModalVisible(true)
             } else {
                 this.resetLoginForm();
+                this.setState({"showError": true});
                 this.setState({"error": "Invalid email and password"});
             }
         }, 500);
@@ -53,7 +55,7 @@ class LoginForm extends Component {
 
      handleCancelModal = () => {
         console.log('Clicked cancel button');
-        window.location.replace("/");
+         this.props.history.push('/');
     };
 
     resetLoginForm = () => {
@@ -63,6 +65,11 @@ class LoginForm extends Component {
     render() {
         return (
             <div>
+                {this.state.showError && this.state.error && (
+                    <Alert variant="danger" onClose={() => this.resetLoginForm() } dismissible message={this.state.error}>
+                        {this.error}
+                    </Alert>
+                )}
                 {/*{error && <Alert variant={"danger"} message={error}>{error}</Alert>}*/}
                 <Modal
                     centered

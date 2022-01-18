@@ -3,7 +3,7 @@ import {
     Form,
     Input,
     Checkbox,
-    Button, Row, Image, Modal, Col
+    Button, Row, Image, Modal, Col, Alert
 } from 'antd';
 
 import {registerUser} from "../service";
@@ -23,6 +23,8 @@ class RegistrationForm extends Component {
 
     initialState = {
         modalVisible: false,
+        error: '',
+        showError: false,
         firstName: '',
         lastName: '',
         email: '',
@@ -35,9 +37,10 @@ class RegistrationForm extends Component {
         this.setState({ modalVisible });
     }
 
+
     handleCancelModal = () => {
         console.log('Clicked cancel button');
-        window.location.replace("/");
+        this.props.history.push('/');
     };
 
     userChange = (event) => {
@@ -61,7 +64,9 @@ class RegistrationForm extends Component {
             if (this.props.user.message != null){
                 this.setModalVisible(true)
             }else{
-
+                this.setState({"showError": true});
+                this.setState({"error" : "This email already exists or something is missing"});
+                console.log(this.state.error);
             }
         }, 2000);
     };
@@ -73,6 +78,12 @@ class RegistrationForm extends Component {
     render() {
         return (
             <>
+                {this.state.showError && this.state.error && (
+                    <Alert variant="danger" onClose={() => this.resetRegistrationForm()} dismissible message={this.state.error}>
+                        {this.error}
+                    </Alert>
+                )}
+
                 <Modal
                     centered
                     visible={this.state.modalVisible}

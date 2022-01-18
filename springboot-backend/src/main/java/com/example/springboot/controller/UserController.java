@@ -118,7 +118,6 @@ public class UserController {
 
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
-        user.setPassword(new BCryptPasswordEncoder().encode(userDetails.getPassword()));
         user.setPhone(userDetails.getPhone());
         user.setProvince(userDetails.getProvince());
 

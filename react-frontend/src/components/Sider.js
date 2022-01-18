@@ -3,7 +3,7 @@ import {Button, Layout, Menu} from 'antd';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {Option} from "antd/es/mentions";
-import {Redirect, Route} from "react-router";
+import {Redirect, Route, withRouter} from "react-router";
 
 const {Sider} = Layout;
 
@@ -28,8 +28,7 @@ class SiderApp extends Component {
 
         const handleClick = e => {
             localStorage.setItem("menuKey", e.key);
-            window.location.reload();
-            window.location.href = "/";
+            this.props.history.push('/');
             console.log(e.key)
         };
 
@@ -75,4 +74,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(SiderApp);
+export default connect(mapStateToProps)(withRouter(SiderApp));
