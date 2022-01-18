@@ -22,8 +22,8 @@ class UserService{
         return axios.get(USER_API_BASE_URL + '/' + userId);
     }
 
-    updateUser(user, userId){
-        return axios.put(USER_API_BASE_URL + '/' +  userId, user);
+    updateUser(user){
+        return axios.put("http://localhost:8080/user/MyProfile" + '/' , user);
     }
 
     deleteUser(userId){
