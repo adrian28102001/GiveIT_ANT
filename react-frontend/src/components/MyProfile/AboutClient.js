@@ -1,9 +1,12 @@
 import React, {Component, useState} from "react";
-import {Button, Col, Row, Card, Form, Input, Space, DatePicker, Select} from 'antd';
+import {Button, Col, Row, Card, Form, Input, Space, DatePicker, Select, Modal, Image} from 'antd';
 import Avatar from "antd/es/avatar/avatar";
 import axios from "axios";
 import UserService from "../../service/UserService";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
+import logo from "../../assets/logo2.png";
+import Title from "antd/es/typography/Title";
+import Text from "antd/es/typography/Text";
 
 
 function onChange(date, dateString) {
@@ -27,7 +30,8 @@ class AboutClient extends Component {
             phone: '',
             province: '',
             disabled: true,
-            showButton: false
+            showButton: false,
+            modalVisible: false
         }
     }
 
@@ -61,7 +65,7 @@ class AboutClient extends Component {
             province: this.state.province
         };
         console.log('user => ' + JSON.stringify(user));
-
+        this.setModalVisible(true);
         UserService.updateUser(user, this.state.id).then( res => {
             this.props.history.push('/MyProfile');
         });
@@ -84,14 +88,6 @@ class AboutClient extends Component {
         this.setState({province: event.target.value});
     }
 
-    changeEmailHandler= (event) => {
-        this.setState({email: event.target.value});
-    }
-
-    changePasswordHandler= (event) => {
-        this.setState({password: event.target.value});
-    }
-
     toggleDisabled = () => {
         this.setState({
             disabled: !this.state.disabled,
@@ -99,8 +95,9 @@ class AboutClient extends Component {
         });
     };
 
-
-
+    setModalVisible(modalVisible) {
+        this.setState({ modalVisible });
+    }
 
     render() {
 
@@ -135,6 +132,33 @@ class AboutClient extends Component {
         return (
 
             <div>
+                <Modal
+                    centered
+                    visible={this.state.modalVisible}
+                    footer={[
+                        <Link exact to = {"/"}>
+                            <Button > Pagina Principala </Button>
+                        </Link>
+                    ]}
+                >
+                    <Row justify={"center"}>
+                        <p>
+                            <Image width={95} preview={false} style={{padding: '5px 5px'}}
+                                   src={logo}/>
+                        </p>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Title level={2} >Profilul a fost creat cu succes!</Title>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Title level={4} > Bine ati venit!</Title>
+                    </Row>
+                    <Row justify={"center"}>
+                        <Text type={"secondary"} >Alegeti unde vreti sa mergeti acum:</Text>
+                    </Row>
+                </Modal>
+
+
                 <div className="site-card-border-less-wrapper">
                     <Card title="MyProfile" bordered={false}>
                         <h1>hello {this.state.email}</h1>
