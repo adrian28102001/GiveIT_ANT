@@ -31,7 +31,7 @@ const Filter = () => {
         <>
             <Row style={{padding: '50px', marginLeft: 100}}>
             {
-                menuKey == "tot"
+                menuKey == " "
                     ?
                     products.map((p) => <CardApp product={p}/>)
                     :

@@ -48,7 +48,7 @@ class SiderApp extends Component {
 
                         {this.props.auth.isLoggedIn ? userLinks : guestLinks}
 
-                        <Menu.Item key="tot">Toate Produsele</Menu.Item>
+                        <Menu.Item key=" ">Toate Produsele</Menu.Item>
                         <Menu.Item key="Mobila si interior">Mobila si interior</Menu.Item>
                         <Menu.Item key="Haine, incaltaminte, accesorii">Haine, incaltaminte, accesorii</Menu.Item>
                         <Menu.Item key="Gadget-uri">Gadget-uri</Menu.Item>
