@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux'
-import {Button, Checkbox, Form, Image, Input, Modal, Row} from 'antd';
+import {Button, Checkbox, Col, Form, Image, Input, Modal, Row} from 'antd';
 import {Link, withRouter} from "react-router-dom";
 import {authenticateUser} from "../service";
 import logo from "../assets/logo2.png";
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
+import  { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 
 class LoginForm extends Component {
@@ -23,9 +25,8 @@ class LoginForm extends Component {
     };
 
     setModalVisible(modalVisible) {
-        this.setState({ modalVisible });
+        this.setState({modalVisible});
     }
-
 
 
     credentialChange = (event) => {
@@ -42,12 +43,17 @@ class LoginForm extends Component {
         this.props.authenticateUser(userObject);
         setTimeout(() => {
             if (this.props.auth.isLoggedIn) {
-                return this.setModalVisible(true);
+                return this.setModalVisible(true)
             } else {
                 this.resetLoginForm();
                 this.setState({"error": "Invalid email and password"});
             }
         }, 500);
+    };
+
+     handleCancelModal = () => {
+        console.log('Clicked cancel button');
+        window.location.replace("/");
     };
 
     resetLoginForm = () => {
@@ -60,28 +66,37 @@ class LoginForm extends Component {
                 {/*{error && <Alert variant={"danger"} message={error}>{error}</Alert>}*/}
                 <Modal
                     centered
+                    onCancel = {this.handleCancelModal}
                     visible={this.state.modalVisible}
                     footer={[
-                        <Link exact to = {"/"}>
-                            <Button > Pagina Principala </Button>
-                        </Link>,
-                        <Link exact to = {"/add_announcement"}>
-                            <Button type={"primary"} > Creeaza un anunt </Button>
-                        </Link>
+                        <Row justify={"space-around"}>
+                            <Link exact to={"/"}>
+                                <Col>
+                                    <Button> Pagina Principala </Button>
+                                </Col>
+                            </Link>,
+                            <Link exact to={"/add_announcement"}>
+                                <Col>
+                                    <Button type={"primary"}> Creeaza un anunt </Button>
+                                </Col>
+                            </Link>
+                        </Row>
                     ]}
                 >
-                    <Row justify={"center"}>
-                        <p>
-                            <Image width={95} preview={false} style={{padding: '5px 5px'}}
-                                   src={logo}/>
-                        </p>
-                    </Row>
-                    <Row justify={"center"}>
-                        <Title level={2} >Bine ai revenit!</Title>
-                    </Row>
-                    <Row justify={"center"}>
-                        <Text type={"secondary"} >Alegeti unde vreti sa mergeti acum:</Text>
-                    </Row>
+                    <>
+                        <Row justify={"center"}>
+                            <p>
+                                <Image width={95} preview={false} style={{padding: '5px 5px'}}
+                                       src={logo}/>
+                            </p>
+                        </Row>
+                        <Row justify={"center"}>
+                            <Title level={2}>Bine ai revenit!</Title>
+                        </Row>
+                        <Row justify={"center"}>
+                            <Text type={"secondary"}>Alegeti unde vreti sa mergeti acum:</Text>
+                        </Row>
+                    </>
                 </Modal>
 
                 <Form
@@ -93,14 +108,14 @@ class LoginForm extends Component {
                             message: 'Please input your Email!'
                         }
                         ]}
-                        style={{width:400}}
+                        style={{width: 400}}
                     >
                         <Input
-                               placeholder="Email"
-                               name="email"
-                               className="form-control"
-                               value={this.state.email}
-                               onChange={this.credentialChange}
+                            placeholder="Email"
+                            name="email"
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={this.credentialChange}
                         />
                     </Form.Item>
 

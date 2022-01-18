@@ -3,7 +3,7 @@ import {
     Form,
     Input,
     Checkbox,
-    Button, Row, Image, Modal
+    Button, Row, Image, Modal, Col
 } from 'antd';
 
 import {registerUser} from "../service";
@@ -34,6 +34,11 @@ class RegistrationForm extends Component {
     setModalVisible(modalVisible) {
         this.setState({ modalVisible });
     }
+
+    handleCancelModal = () => {
+        console.log('Clicked cancel button');
+        window.location.replace("/");
+    };
 
     userChange = (event) => {
         this.setState({
@@ -71,13 +76,24 @@ class RegistrationForm extends Component {
                 <Modal
                     centered
                     visible={this.state.modalVisible}
+                    onCancel = {this.handleCancelModal}
                     footer={[
-                        <Link exact to = {"/"}>
-                            <Button > Pagina Principala </Button>
-                        </Link>,
-                        <Link exact to = {"/add_announcement"}>
-                            <Button type={"primary"} > Creeaza un anunt </Button>
-                        </Link>
+                        <Row justify={"space-around"}>
+                            <Link exact to={"/"}>
+                                <Col>
+                                    <Button> Pagina Principala </Button>
+                                </Col>
+                            </Link>,
+
+                                <Col>
+                                    <Link exact to = {"/login"}>
+                                        <Button type={"primary"} > Conecteaza-te </Button>
+                                    </Link>
+                                </Col>
+                        </Row>
+
+
+
                     ]}
                 >
                     <Row justify={"center"}>

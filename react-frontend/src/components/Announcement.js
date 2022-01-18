@@ -42,6 +42,11 @@ class Announcement extends Component {
         this.setState({ modalVisible });
     }
 
+    handleCancelModal = () => {
+        console.log('Clicked cancel button');
+        window.location.replace("/");
+    };
+
 
     resetPost = () => {
         this.setState(() => this.initialState);
@@ -77,6 +82,7 @@ class Announcement extends Component {
                 <Modal
                     centered
                     visible={this.state.modalVisible}
+                    onCancel = {this.handleCancelModal}
                     footer={[
                         <Link exact to = {"/"}>
                         <Button> Ok </Button>
