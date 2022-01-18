@@ -65,7 +65,7 @@ class RegistrationForm extends Component {
                 this.setModalVisible(true)
             }else{
                 this.setState({"showError": true});
-                this.setState({"error" : "Try again"});
+                this.setState({"error" : "This email already exists or something is missing"});
                 console.log(this.state.error);
             }
         }, 2000);
@@ -79,7 +79,7 @@ class RegistrationForm extends Component {
         return (
             <>
                 {this.state.showError && this.state.error && (
-                    <Alert variant="danger" onClose={() => this.setShow(false)} dismissible message={"Try again"}>
+                    <Alert variant="danger" onClose={() => this.resetRegistrationForm()} dismissible message={this.state.error}>
                         {this.error}
                     </Alert>
                 )}

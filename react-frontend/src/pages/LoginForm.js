@@ -47,7 +47,6 @@ class LoginForm extends Component {
                 return this.setModalVisible(true)
             } else {
                 this.resetLoginForm();
-                console.log(this.state.error);
                 this.setState({"showError": true});
                 this.setState({"error": "Invalid email and password"});
             }
@@ -67,7 +66,7 @@ class LoginForm extends Component {
         return (
             <div>
                 {this.state.showError && this.state.error && (
-                    <Alert variant="danger" onClose={() => this.setState({"showError": false})} dismissible message={this.state.error}>
+                    <Alert variant="danger" onClose={() => this.resetLoginForm() } dismissible message={this.state.error}>
                         {this.error}
                     </Alert>
                 )}
