@@ -15,6 +15,7 @@ const CardApp = ({product}) => (
                 cover={
                     <img
                         alt="example"
+                        style = {{height: "290px", width: "240px"}}
                         src={product.photo}/>
                 }
                 actions={[
