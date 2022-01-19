@@ -124,4 +124,10 @@ public class UserController {
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
     }
+
+    @GetMapping("/post/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email){
+        User user = userRepository.findByEmail(email);
+        return ResponseEntity.ok(user);
+    }
 }

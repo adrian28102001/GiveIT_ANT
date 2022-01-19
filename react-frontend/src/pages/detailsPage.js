@@ -11,7 +11,6 @@ import {Carousel} from 'react-responsive-carousel';
 import {useSelector} from "react-redux";
 import axios from "axios";
 import CardApp from "../components/CardApp";
-import Person from "./Person";
 
 const DetailsPage = () => {
 
@@ -19,8 +18,34 @@ const DetailsPage = () => {
     const {id} = useParams();
     const {data, error, isPending} = useFetch(`http://localhost:8080/posts/posts/${id}`);
     const [userVisible, setUserVisible] = useState(false)
+    const [userpost, setUserPost] = useState([]);
 
-
+    const state = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phone: '',
+        province: ''
+    }
+    const userDetails = (e) => {
+        axios.get(`http://localhost:8080/user/post/${data.userid}`
+        ).then((res) => {
+            let user = res.data;
+            setUserPost({
+                first: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                password: user.password,
+                phone: user.phone,
+                province: user.province
+            })
+            setUserVisible(!userVisible)
+            console.log('user => ' + JSON.stringify(user))
+        }).catch((error) => {
+            console.log(error.response)
+        });
+    }
     const addedToFavorite = type => {
         notification[type]({
             message: 'Adaugat la favorit',
@@ -41,7 +66,7 @@ const DetailsPage = () => {
                 </Button>
             </Col>
             <Col>
-                <Button onClick={(e)=>{setUserVisible(!userVisible)}}>
+                <Button onClick={userDetails}>
                     <MessageTwoTone key="mess" twoToneColor="#1890ff"/>Vezi informatia proprietarului
                 </Button>
             </Col>
@@ -50,7 +75,7 @@ const DetailsPage = () => {
                 {
                 userVisible
                     ?
-                    <> is Person </>
+                    <> {userpost.phone} </>
                     :
                     <></>
             }
