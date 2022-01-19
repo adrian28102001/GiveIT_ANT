@@ -75,7 +75,20 @@ const DetailsPage = () => {
                 {
                 userVisible
                     ?
-                    <> {userpost.phone} </>
+                    <div>
+                        <Row>
+                            <p>Telefon: {userpost.phone}</p>
+
+                        </Row>
+                        <Row>
+                            <p>Email:  {userpost.email}</p>
+
+                        </Row>
+                        <Row>
+                            <p>Oras: {userpost.province}</p>
+
+                        </Row>
+                    </div>
                     :
                     <></>
             }
