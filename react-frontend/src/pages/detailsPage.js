@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Col, Layout, notification, Row, Spin} from "antd";
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
@@ -9,12 +9,17 @@ import useFetch from "../components/useFetch";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import {Carousel} from 'react-responsive-carousel';
 import {useSelector} from "react-redux";
+import axios from "axios";
+import CardApp from "../components/CardApp";
+import Person from "./Person";
 
 const DetailsPage = () => {
 
     const auth = useSelector((state) => state.auth);
     const {id} = useParams();
     const {data, error, isPending} = useFetch(`http://localhost:8080/posts/posts/${id}`);
+    const [userVisible, setUserVisible] = useState(false)
+
 
     const addedToFavorite = type => {
         notification[type]({
@@ -25,7 +30,9 @@ const DetailsPage = () => {
         });
     };
 
-    const userLinks = (
+
+    const userLinks =  (
+        <>
         <Row justify="space-around" style={{marginTop: '3%', marginBottom: '3%'}}>
             <Col>
                 <Button onClick={() => addedToFavorite('success')}>
@@ -34,9 +41,22 @@ const DetailsPage = () => {
                 </Button>
             </Col>
             <Col>
-                <Button><MessageTwoTone key="mess" twoToneColor="#1890ff"/>Chat with owner</Button>
+                <Button onClick={(e)=>{setUserVisible(!userVisible)}}>
+                    <MessageTwoTone key="mess" twoToneColor="#1890ff"/>Vezi informatia proprietarului
+                </Button>
             </Col>
         </Row>
+            <Row>
+                {
+                userVisible
+                    ?
+                    <> is Person </>
+                    :
+                    <></>
+            }
+
+            </Row>
+        </>
     );
 
     const guestLinks = (
