@@ -6,16 +6,9 @@ const UploadPhoto = () => {
 
     const [image, setImage] = useState("");
     const [photo, setPhoto] = useState("");
-    const [status, setStatus] = useState("");
+    const [status] = useState("");
 
-    const handleState = () => {
-        if(status === "success")
-            message.success("All good!").then(r => message);
-        else if (status === "error")
-            message.error("Something is wrong").then(r => message);
-        else
-            message.warning('This is a warning message').then(r => message);
-    }
+
 
     const uploadImage = () => {
         const data = new FormData()

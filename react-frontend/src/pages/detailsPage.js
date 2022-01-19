@@ -67,7 +67,7 @@ const DetailsPage = () => {
             </Col>
             <Col>
                 <Button onClick={userDetails}>
-                    <MessageTwoTone key="mess" twoToneColor="#1890ff"/>Vezi informatia proprietarului
+                    <MessageTwoTone key="mess" twoToneColor="#1890ff"/>Info proprietar
                 </Button>
             </Col>
         </Row>
@@ -153,7 +153,7 @@ const DetailsPage = () => {
 
 
                     <Row justify="end">
-                        <Text type="secondary">Owner Name, {data.userid}</Text>
+                        <Text type="secondary">Posted by: {data.userid}</Text>
                     </Row>
                     <Row justify="end">
                         <Text type="secondary">{data.created}</Text>
