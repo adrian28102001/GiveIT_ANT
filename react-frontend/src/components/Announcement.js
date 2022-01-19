@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios';
-import {Form, Button, Input, Switch, Select, Modal, Image, Row, Checkbox} from "antd";
+import {Form, Button, Input, Select, Modal, Image, Row} from "antd";
 import {savePost} from "../service";
 import {connect} from "react-redux";
 import {Option} from "antd/es/mentions";

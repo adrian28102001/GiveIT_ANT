@@ -1,11 +1,7 @@
 import React from "react";
-import {Button, Col, Row, Image, Card, Form, Input, Space, DatePicker, Select, Checkbox} from 'antd';
+import {Row, Card} from 'antd';
 
-import Avatar from "antd/es/avatar/avatar";
 
-function onChange(date, dateString) {
-    console.log(date, dateString);
-}
 
 
 const Favorites = () => {

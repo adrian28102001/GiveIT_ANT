@@ -1,7 +1,6 @@
-import React, {Component, useState} from "react";
+import React from "react";
 import {Header} from "antd/es/layout/layout";
-import {Row, Col, Image, Badge, Button, Affix, Drawer} from "antd";
-import {MessageOutlined} from "@ant-design/icons";
+import {Row, Col, Image,  Button, Affix} from "antd";
 import {Link} from "react-router-dom";
 import CascadUser from "./CascadUser";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {Button, Col, Layout, notification, Row, Spin} from "antd";
+import React, {useState} from "react";
+import {Button, Col, notification, Row, Spin} from "antd";
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
 import Paragraph from "antd/es/typography/Paragraph";
-import {HeartTwoTone, LoadingOutlined, MessageTwoTone} from "@ant-design/icons";
+import {HeartTwoTone, MessageTwoTone} from "@ant-design/icons";
 import {Link, useParams} from "react-router-dom";
 import useFetch from "../components/useFetch";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import {Carousel} from 'react-responsive-carousel';
 import {useSelector} from "react-redux";
 import axios from "axios";
-import CardApp from "../components/CardApp";
 
 const DetailsPage = () => {
 

@@ -1,9 +1,8 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import {Button, Layout, Menu} from 'antd';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {Option} from "antd/es/mentions";
-import {Redirect, Route, withRouter} from "react-router";
+import {withRouter} from "react-router";
 
 const {Sider} = Layout;
 

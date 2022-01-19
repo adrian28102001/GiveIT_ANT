@@ -1,10 +1,7 @@
-import {Button, Card, Col} from 'antd';
+import {Button, Card} from 'antd';
 import axios from "axios";
 import React, { useEffect, useState} from "react";
-import smallerCardApp from  "../smallerCardApp";
-import CardApp from "../CardApp";
 import SmallerCardApp from "../smallerCardApp";
-import Row from "antd/es/descriptions/Row";
 
 
 

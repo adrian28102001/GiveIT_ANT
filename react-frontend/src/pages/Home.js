@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import CardApp from "../components/CardApp";
-import {Row, Layout} from "antd";
+import {Layout} from "antd";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import authToken from "../utils/authToken";
 import Filter from "./Filter";
-import Title from "antd/es/typography/Title";
 import {logoutUser} from "../service";
 
 const Home = () => {
 
-    //authToken(localStorage.jwtToken);
     if (localStorage.jwtToken) {
         authToken(localStorage.jwtToken);
     }

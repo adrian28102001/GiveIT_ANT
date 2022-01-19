@@ -7,8 +7,6 @@ import {authenticateUser} from "../service";
 import logo from "../assets/logo2.png";
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
-import  { Redirect } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
 
 
 class LoginForm extends Component {
