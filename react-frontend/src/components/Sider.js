@@ -11,7 +11,7 @@ class SiderApp extends Component {
         const userLinks = (
             <div style={{padding: '40px 60px'}}>
                 <Link exact to="/add_announcement"><Button type="primary" ghost>
-                    Creaza un anunt
+                    Creeaza un anunt
                 </Button></Link>
             </div>
 
@@ -20,7 +20,7 @@ class SiderApp extends Component {
         const guestLinks = (
             <div style={{padding: '40px 60px'}}>
                 <Link exact to="/login"><Button type="primary" ghost>
-                    Creaza un anunt
+                    Creeaza un anunt
                 </Button></Link>
             </div>
         );

@@ -32,7 +32,7 @@ const FormCreatingAdd = () => {
                 'margin-left':'40px',
                 'padding':'30px'
             }}>
-                Creaza un anut</h1>
+                Creeaza un anut</h1>
             <Form
                 labelCol={{
                     span: 4,
