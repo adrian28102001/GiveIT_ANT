@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/GiveIT_ANT/static/css/main.fe0df249.chunk.css",
+    "main.js": "/GiveIT_ANT/static/js/main.81dda063.chunk.js",
+    "main.js.map": "/GiveIT_ANT/static/js/main.81dda063.chunk.js.map",
+    "runtime-main.js": "/GiveIT_ANT/static/js/runtime-main.60ce0ecc.js",
+    "runtime-main.js.map": "/GiveIT_ANT/static/js/runtime-main.60ce0ecc.js.map",
+    "static/css/2.7a6f437a.chunk.css": "/GiveIT_ANT/static/css/2.7a6f437a.chunk.css",
+    "static/js/2.f0188792.chunk.js": "/GiveIT_ANT/static/js/2.f0188792.chunk.js",
+    "static/js/2.f0188792.chunk.js.map": "/GiveIT_ANT/static/js/2.f0188792.chunk.js.map",
+    "index.html": "/GiveIT_ANT/index.html",
+    "precache-manifest.082104a1b33ad5de72541985ac271eba.js": "/GiveIT_ANT/precache-manifest.082104a1b33ad5de72541985ac271eba.js",
+    "service-worker.js": "/GiveIT_ANT/service-worker.js",
+    "static/css/2.7a6f437a.chunk.css.map": "/GiveIT_ANT/static/css/2.7a6f437a.chunk.css.map",
+    "static/css/main.fe0df249.chunk.css.map": "/GiveIT_ANT/static/css/main.fe0df249.chunk.css.map",
+    "static/js/2.f0188792.chunk.js.LICENSE.txt": "/GiveIT_ANT/static/js/2.f0188792.chunk.js.LICENSE.txt",
+    "static/media/back3.jpg": "/GiveIT_ANT/static/media/back3.7404a119.jpg",
+    "static/media/logo2.png": "/GiveIT_ANT/static/media/logo2.39e7dd4f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.60ce0ecc.js",
+    "static/css/2.7a6f437a.chunk.css",
+    "static/js/2.f0188792.chunk.js",
+    "static/css/main.fe0df249.chunk.css",
+    "static/js/main.81dda063.chunk.js"
+  ]
+}
