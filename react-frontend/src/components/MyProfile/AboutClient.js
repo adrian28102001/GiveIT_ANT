@@ -101,9 +101,9 @@ class AboutClient extends Component {
         const displayButton = (
 <Row >
             <Form.Item style={{marginRight:"50%"}}>
-                <Button type="primary">
+                <Link exact to ={"/MyProfile"}><Button onClick={this.toggleDisabled} type="primary">
                     Anuleaza
-                </Button>
+                </Button></Link>
             </Form.Item>
 
         <Form.Item >
@@ -158,11 +158,10 @@ class AboutClient extends Component {
 
                 <div className="site-card-border-less-wrapper">
                     <Card title="MyProfile" bordered={false}>
-                        <h1>hello {this.state.email}</h1>
                         {/* <h1> [[${this.#request.userPrinciple.principal.username}]]</h1>*/}
                         <Row>
                             <Col span={5}>
-                                <Avatar size={128} src="https://i.ibb.co/V3NQKqC/photo-2021-09-27-14-16-38.jpg"/>
+                                <Avatar size={128} src="http://cdn.onlinewebfonts.com/svg/img_568656.png"/>
                             </Col>
                             <Col span={19}>
                                 <Form
@@ -188,7 +187,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input value={this.state.email} placeholder={this.state.email} disabled={this.state.disabled}/>
+                                        <Input value={this.state.email} placeholder={this.state.email} disabled={true}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -202,7 +201,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input value={this.state.firstName} placeholder={this.state.firstName} onChange={this.changeFirstNameHandler}/>
+                                        <Input value={this.state.firstName} placeholder={this.state.firstName} disabled={this.state.disabled} onChange={this.changeFirstNameHandler}/>
                                     </Form.Item>
 
 
@@ -218,7 +217,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input value={this.state.lastName} placeholder={this.state.lastName} onChange={this.changeLastNameHandler}/>
+                                        <Input value={this.state.lastName} placeholder={this.state.lastName} disabled={this.state.disabled} onChange={this.changeLastNameHandler}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -231,7 +230,7 @@ class AboutClient extends Component {
                                             },
                                         ]}
                                     >
-                                        <Input value={this.state.province} placeholder={this.state.province} onChange={this.changeProvinceHandler}/>
+                                        <Input value={this.state.province} placeholder={this.state.province} disabled={this.state.disabled} onChange={this.changeProvinceHandler}/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -251,6 +250,7 @@ class AboutClient extends Component {
                                                prefix="+373"
                                                value={this.state.phone}
                                                placeholder={this.state.phone}
+                                               disabled={this.state.disabled}
                                                onChange={this.changePhoneHandler}
                                         />
                                     </Form.Item>
